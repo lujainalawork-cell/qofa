@@ -1,0 +1,2462 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Qofa — Business Intelligence for Small Businesses</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --black: #111111;
+            --dark: #181818;
+            --cream: #f7f4ee;
+            --white: #ffffff;
+            --muted: #777777;
+            --border: #e5e1d9;
+            --accent: #c9a227;
+            --green: #2e7d5b;
+            --red: #b84a4a;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            min-height: 100vh;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .screen {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* =========================
+           LANGUAGE
+        ========================= */
+
+        #language-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--black);
+            color: white;
+        }
+
+        .language-box {
+            width: min(650px, 90%);
+            text-align: center;
+        }
+
+        .qofa-logo-large {
+            font-size: 64px;
+            font-weight: 800;
+            letter-spacing: -4px;
+            margin-bottom: 20px;
+        }
+
+        .language-box h1 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .language-box p {
+            color: #bdbdbd;
+            margin-bottom: 40px;
+        }
+
+        .language-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .language-buttons button {
+            background: transparent;
+            color: white;
+            border: 1px solid #444;
+            padding: 15px 30px;
+            border-radius: 999px;
+            transition: .2s;
+        }
+
+        .language-buttons button:hover {
+            background: white;
+            color: black;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .navbar {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            background: rgba(247, 244, 238, .96);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .logo {
+            font-size: 29px;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            color: var(--black);
+        }
+
+        .nav-primary {
+            background: var(--black) !important;
+            color: white !important;
+            padding: 12px 20px;
+            border-radius: 999px;
+        }
+
+        /* =========================
+           HOME
+        ========================= */
+
+        .hero {
+            min-height: 680px;
+            display: flex;
+            align-items: center;
+            padding: 80px 8%;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(201,162,39,.16), transparent 30%),
+                var(--cream);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 8vw, 105px);
+            line-height: .9;
+            letter-spacing: -6px;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: #777;
+        }
+
+        .hero p {
+            max-width: 650px;
+            font-size: 20px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            padding: 15px 25px;
+            border-radius: 999px;
+            transition: .2s;
+        }
+
+        .btn-dark {
+            background: var(--black);
+            color: white;
+        }
+
+        .btn-light {
+            background: white;
+            border: 1px solid var(--border);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
+        .section {
+            padding: 100px 8%;
+        }
+
+        .section-dark {
+            background: var(--black);
+            color: white;
+        }
+
+        .section-title {
+            font-size: clamp(38px, 5vw, 68px);
+            letter-spacing: -3px;
+            margin-bottom: 25px;
+        }
+
+        .section-text {
+            max-width: 700px;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        .section-dark .section-text {
+            color: #aaa;
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================= */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-top: 60px;
+        }
+
+        .step {
+            padding: 30px 20px;
+            border: 1px solid var(--border);
+            background: white;
+            min-height: 180px;
+        }
+
+        .step-number {
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           FORMS
+        ========================= */
+
+        .form-page {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-container {
+            width: min(750px, 100%);
+        }
+
+        .form-container h1 {
+            font-size: 55px;
+            letter-spacing: -3px;
+            margin-bottom: 15px;
+        }
+
+        .form-container > p {
+            color: var(--muted);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 35px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            border: 1px solid var(--border);
+            padding: 14px;
+            background: #fafafa;
+            outline: none;
+        }
+
+        .field textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--black);
+        }
+
+        /* =========================
+           PACKAGES
+        ========================= */
+
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .package {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            min-height: 420px;
+        }
+
+        .package.featured {
+            background: var(--black);
+            color: white;
+        }
+
+        .package-name {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .package-price {
+            font-size: 50px;
+            font-weight: bold;
+            letter-spacing: -3px;
+        }
+
+        .package-period {
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .featured .package-period {
+            color: #aaa;
+        }
+
+        .package ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .package li {
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .featured li {
+            border-color: #333;
+        }
+
+        .package button {
+            margin-top: auto;
+        }
+
+        /* =========================
+           PAYMENT / LAUNCH
+        ========================= */
+
+        .center-page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .center-card {
+            width: min(600px, 100%);
+            background: white;
+            border: 1px solid var(--border);
+            padding: 45px;
+        }
+
+        .center-card h1 {
+            font-size: 48px;
+            letter-spacing: -3px;
+            margin-bottom: 15px;
+        }
+
+        .center-card p {
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .payment-summary {
+            padding: 20px;
+            background: var(--cream);
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* =========================
+           MERCHANT DASHBOARD
+        ========================= */
+
+        .merchant-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            min-height: 100vh;
+        }
+
+        .merchant-sidebar {
+            background: var(--black);
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .merchant-logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 45px;
+        }
+
+        .merchant-profile {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: white;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .merchant-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .merchant-nav button {
+            text-align: left;
+            padding: 13px;
+            background: transparent;
+            color: #aaa;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .merchant-nav button:hover,
+        .merchant-nav button.active {
+            background: #292929;
+            color: white;
+        }
+
+        .merchant-main {
+            padding: 40px;
+            background: var(--cream);
+        }
+
+        .merchant-view {
+            display: none;
+        }
+
+        .merchant-view.active-view {
+            display: block;
+        }
+
+        .merchant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            gap: 20px;
+        }
+
+        .merchant-header h1 {
+            font-size: 45px;
+            letter-spacing: -3px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .metric-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 25px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--muted);
+            letter-spacing: 1px;
+        }
+
+        .metric-value {
+            font-size: 35px;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        .metric-change {
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .negative {
+            color: var(--red);
+        }
+
+        .positive {
+            color: var(--green);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .dashboard-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 30px;
+        }
+
+        .dashboard-card h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chart-placeholder {
+            height: 250px;
+            background:
+                linear-gradient(135deg, transparent 49%, #ddd 50%, transparent 51%),
+                linear-gradient(45deg, transparent 49%, #eee 50%, transparent 51%);
+            background-size: 60px 60px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+        }
+
+        /* =========================
+           NADER
+        ========================= */
+
+        .nader-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 20px;
+        }
+
+        .chat-box {
+            background: white;
+            border: 1px solid var(--border);
+            height: 650px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #nader-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 15px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        .chat-message strong {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .nader-message {
+            background: #f2f0eb;
+        }
+
+        .user-message {
+            background: var(--black);
+            color: white;
+            margin-left: auto;
+        }
+
+        .chat-form {
+            display: flex;
+            border-top: 1px solid var(--border);
+        }
+
+        .chat-form input {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            outline: none;
+        }
+
+        .chat-form button {
+            padding: 0 25px;
+            border: none;
+            background: var(--black);
+            color: white;
+        }
+
+        .nader-side {
+            background: var(--black);
+            color: white;
+            padding: 30px;
+        }
+
+        .nader-side h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .nader-side p {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .suggestion {
+            width: 100%;
+            text-align: left;
+            padding: 13px;
+            background: #242424;
+            color: white;
+            border: 1px solid #333;
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           SUPPORT
+        ========================= */
+
+        .support-card {
+            max-width: 800px;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 35px;
+        }
+
+        .ticket-list {
+            margin-top: 30px;
+        }
+
+        .ticket {
+            border: 1px solid var(--border);
+            padding: 20px;
+            margin-bottom: 10px;
+            background: white;
+        }
+
+        .ticket-status {
+            color: var(--green);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           CONSUMER WEBSITE
+        ========================= */
+
+        .consumer-top {
+            padding: 20px 7%;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .consumer-hero {
+            min-height: 600px;
+            padding: 100px 8%;
+            background: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .consumer-hero h1 {
+            font-size: clamp(55px, 9vw, 120px);
+            letter-spacing: -7px;
+            line-height: .85;
+        }
+
+        .consumer-content {
+            max-width: 900px;
+        }
+
+        .consumer-content p {
+            margin-top: 30px;
+            max-width: 550px;
+            font-size: 19px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .consumer-footer {
+            background: var(--black);
+            color: white;
+            padding: 50px 8%;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .packages {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-grid,
+            .nader-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .merchant-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .merchant-sidebar {
+                min-height: auto;
+            }
+
+            .merchant-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links button:not(.nav-primary) {
+                display: none;
+            }
+
+            .hero {
+                padding: 70px 25px;
+            }
+
+            .hero h1 {
+                letter-spacing: -4px;
+            }
+
+            .section {
+                padding: 70px 25px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .merchant-main {
+                padding: 25px;
+            }
+
+            .merchant-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-card,
+            .center-card,
+            .support-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         LANGUAGE SCREEN
+    ========================== -->
+
+    <section id="language-screen" class="screen active">
+
+        <div class="language-box">
+
+            <div class="qofa-logo-large">
+                qofa
+            </div>
+
+            <h1>
+                Choose your language
+            </h1>
+
+            <p>
+                Choose how you want to experience Qofa.
+            </p>
+
+            <div class="language-buttons">
+
+                <button onclick="selectLanguage('en')">
+                    English
+                </button>
+
+                <button onclick="selectLanguage('fr')">
+                    Français
+                </button>
+
+                <button onclick="selectLanguage('ar')">
+                    العربية
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOME
+    ========================== -->
+
+    <section id="home-screen" class="screen">
+
+        <nav class="navbar">
+
+            <div class="logo">
+                qofa
+            </div>
+
+            <div class="nav-links">
+
+                <button onclick="document.getElementById('how-section').scrollIntoView()">
+                    <span data-i18n="how">How it works</span>
+                </button>
+
+                <button onclick="merchantLogin()">
+                    <span data-i18n="login">Merchant Login</span>
+                </button>
+
+                <button
+                    class="nav-primary"
+                    onclick="openRegistration()"
+                >
+                    <span data-i18n="register">Get Started</span>
+                </button>
+
+            </div>
+
+        </nav>
+
+
+        <div class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow" data-i18n="heroEyebrow">
+                    BUSINESS INTELLIGENCE FOR SMALL BUSINESSES
+                </div>
+
+                <h1>
+                    <span data-i18n="heroTitle">
+                        Your business.
+                    </span>
+
+                    <span data-i18n="heroTitle2">
+                        Understood.
+                    </span>
+                </h1>
+
+                <p data-i18n="heroText">
+                    Qofa gives small businesses the tools, dashboards
+                    and intelligent guidance they need to understand
+                    what is happening and decide what to do next.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="btn btn-dark"
+                        onclick="document.getElementById('how-section').scrollIntoView()"
+                    >
+                        <span data-i18n="learn">
+                            How Qofa works
+                        </span>
+                    </button>
+
+                    <button
+                        class="btn btn-light"
+                        onclick="openRegistration()"
+                    >
+                        <span data-i18n="dashboard">
+                            Explore Dashboard
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <section class="section">
+
+            <div class="eyebrow">
+                QOFA
+            </div>
+
+            <h2 class="section-title" data-i18n="what">
+                What is Qofa?
+            </h2>
+
+            <p class="section-text" data-i18n="whatText">
+                Qofa is a business platform built for small merchants.
+                It connects your business data, gives you detailed
+                dashboards and lets Nader help you understand your business.
+            </p>
+
+        </section>
+
+
+        <section id="how-section" class="section section-dark">
+
+            <div class="eyebrow">
+                THE PROCESS
+            </div>
+
+            <h2 class="section-title" data-i18n="stepsTitle">
+                From your business to better decisions.
+            </h2>
+
+            <div class="steps">
+
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3 data-i18n="step1">Create your account</h3>
+                    <p data-i18n="step1Text"></p>
+                        Tell Qofa who you are and what you do.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3 data-i18n="step2">Choose your plan</h3>
+                    <p data-i18n="step2Text">
+                        Choose the package that fits your business.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3 data-i18n="step3">Connect your business</h3>
+                    <p>
+                        Bring your business information into Qofa.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <h3 data-i18n="step4">Understand your data/h3>
+                    <p>
+                        Explore detailed business dashboards.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">05</div>
+                    <h3 data-i18n="step5">Take action</h3>
+                    <p>
+                        Use Nader and your data to make better decisions.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="section">
+
+            <h2 class="section-title" data-i18n="cta">
+                Give your business a clearer picture.
+            </h2>
+
+            <button
+                class="btn btn-dark"
+                onclick="openRegistration()"
+            >
+                <span data-i18n="ctaButton">
+                    Start with Qofa
+                </span>
+            </button>
+
+        </section>
+
+    </section>
+
+
+    <!-- =========================
+         REGISTER
+    ========================== -->
+
+    <section id="register-screen" class="screen">
+
+        <div class="form-page">
+
+            <div class="form-container">
+
+                <div class="logo">
+                    qofa
+                </div>
+
+                <br>
+
+                <h1 data-i18n="registerTitle">
+                    Create your Qofa account
+                </h1>
+
+                <p data-i18n="registerText">
+                    Tell us a little about yourself and your business.
+                </p>
+
+                <form id="registration-form" class="form-card">
+
+                    <div class="form-grid">
+
+                        <div class="field">
+                            <label data-i18n="firstName">
+                                First name
+                            </label>
+
+                            <input
+                                name="firstName"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label data-i18n="lastName">
+                                Last name
+                            </label>
+
+                            <input
+                                name="lastName"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label data-i18n="phone">
+                                Phone number
+                            </label>
+
+                            <input
+                                name="phone"
+                                type="tel"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label data-i18n="email">
+                                Email address
+                            </label>
+
+                            <input
+                                name="email"
+                                type="email"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label data-i18n="gender">
+                                Gender
+                            </label>
+
+                            <select name="gender">
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="male">
+                                    Male
+                                </option>
+
+                                <option value="female">
+                                    Female
+                                </option>
+
+                                <option value="other">
+                                    Prefer not to say
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label data-i18n="accountType">
+                                Account type
+                            </label>
+
+                            <select
+                                id="account-type"
+                                name="accountType"
+                            >
+                                <option value="business">
+                                    Business
+                                </option>
+
+                                <option value="individual">
+                                    Individual
+                                </option>
+                            </select>
+                        </div>
+
+                        <div
+                            id="business-fields"
+                            class="field full"
+                        >
+
+                            <label data-i18n="businessName">
+                                Business name
+                            </label>
+
+                            <input
+                                name="businessName"
+                                placeholder="Your business"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="field full">
+
+                            <label data-i18n="businessType">
+                                Business type
+                            </label>
+
+                            <select name="businessType">
+
+                                <option value="grocery">
+                                    Grocery
+                                </option>
+
+                                <option value="fashion">
+                                    Fashion
+                                </option>
+
+                                <option value="restaurant">
+                                    Restaurant
+                                </option>
+
+                                <option value="beauty">
+                                    Beauty
+                                </option>
+
+                                <option value="services">
+                                    Services
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="btn btn-dark"
+                        type="submit"
+                    >
+                        <span data-i18n="continue">
+                            Continue
+                        </span>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PACKAGES
+    ========================== -->
+
+    <section id="packages-screen" class="screen">
+
+        <div class="section">
+
+            <div class="logo">
+                qofa
+            </div>
+
+            <br><br>
+
+            <div class="eyebrow">
+                QOFA PLANS
+            </div>
+
+            <h1 class="section-title" data-i18n="packagesTitle">
+                Choose your Qofa plan
+            </h1>
+
+            <p
+                class="section-text"
+                data-i18n="packagesText"
+            >
+                Start with the tools your business needs.
+            </p>
+
+            <br><br>
+
+            <div class="packages">
+
+                <!-- STARTER -->
+
+                <div class="package">
+
+                    <div class="package-name">
+                        Starter
+                    </div>
+
+                    <div class="package-price">
+                        $19
+                    </div>
+
+                    <div class="package-period">
+                        / month
+                    </div>
+
+                    <ul>
+                        <li>Business dashboard</li>
+                        <li>Basic analytics</li>
+                        <li>Nader AI assistant</li>
+                        <li>Business profile</li>
+                    </ul>
+
+                    <button
+                        class="btn btn-dark"
+                        onclick="selectPackage('starter')"
+                    >
+                        <span data-i18n="choose">
+                            Choose plan
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <!-- GROWTH -->
+
+                <div class="package featured">
+
+                    <div class="package-name">
+                        Growth
+                    </div>
+
+                    <div class="package-price">
+                        $49
+                    </div>
+
+                    <div class="package-period">
+                        / month
+                    </div>
+
+                    <ul>
+                        <li>Everything in Starter</li>
+                        <li>Advanced dashboards</li>
+                        <li>Traffic analysis</li>
+                        <li>Conversion analysis</li>
+                        <li>Support tickets</li>
+                    </ul>
+
+                    <button
+                        class="btn"
+                        style="background:white;color:black;"
+                        onclick="selectPackage('growth')"
+                    >
+                        <span data-i18n="choose">
+                            Choose plan
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <!-- PRO -->
+
+                <div class="package">
+
+                    <div class="package-name">
+                        Pro
+                    </div>
+
+                    <div class="package-price">
+                        $99
+                    </div>
+
+                    <div class="package-period">
+                        / month
+                    </div>
+
+                    <ul>
+                        <li>Everything in Growth</li>
+                        <li>Advanced business intelligence</li>
+                        <li>Custom dashboards</li>
+                        <li>Priority support</li>
+                        <li>Advanced Nader capabilities</li>
+                    </ul>
+
+                    <button
+                        class="btn btn-dark"
+                        onclick="selectPackage('pro')"
+                    >
+                        <span data-i18n="choose">
+                            Choose plan
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PAYMENT
+    ========================== -->
+
+    <section id="payment-screen" class="screen">
+
+        <div class="center-page">
+
+            <div class="center-card">
+
+                <div class="logo">
+                    qofa
+                </div>
+
+                <br>
+
+                <h1 data-i18n="paymentTitle">
+                    Complete your payment
+                </h1>
+
+                <p data-i18n="paymentText">
+                    This is a prototype payment screen.
+                </p>
+
+                <div class="payment-summary">
+
+                    <strong id="payment-package-name">
+                        Growth
+                    </strong>
+
+                    <strong id="payment-package-price">
+                        $49/month
+                    </strong>
+
+                </div>
+
+                <form id="payment-form">
+
+                    <div class="field">
+
+                        <label data-i18n="cardName">
+                            Name on card
+                        </label>
+
+                        <input required>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label data-i18n="cardNumber">
+                            Card number
+                        </label>
+
+                        <input
+                            maxlength="19"
+                            placeholder="0000 0000 0000 0000"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="field">
+
+                            <label data-i18n="expiry">
+                                Expiry
+                            </label>
+
+                            <input
+                                placeholder="MM/YY"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="field">
+
+                            <label data-i18n="cvv">
+                                CVV
+                            </label>
+
+                            <input
+                                maxlength="4"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="btn btn-dark"
+                        type="submit"
+                    >
+                        <span data-i18n="pay">
+                            Pay and launch
+                        </span>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LAUNCH
+    ========================== -->
+
+    <section id="launch-screen" class="screen">
+
+        <div class="center-page">
+
+            <div class="center-card">
+
+                <div class="eyebrow">
+                    QOFA
+                </div>
+
+                <h1 data-i18n="launchTitle">
+                    Your Qofa business is ready.
+                </h1>
+
+                <p data-i18n="launchText">
+                    Your business will live on its own Qofa-linked address.
+                </p>
+
+                <div
+                    style="
+                        padding:20px;
+                        background:#f7f4ee;
+                        margin-bottom:25px;
+                        font-weight:bold;
+                    "
+                >
+                    <span data-business-domain>
+                        yourbusiness.qofa.com
+                    </span>
+                </div>
+
+                <button
+                    class="btn btn-dark"
+                    onclick="launchBusiness()"
+                >
+                    <span data-i18n="launch">
+                        Launch my business
+                    </span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MERCHANT DASHBOARD
+    ========================== -->
+
+    <section id="merchant-screen" class="screen">
+
+        <div class="merchant-layout">
+
+            <!-- SIDEBAR -->
+
+            <aside class="merchant-sidebar">
+
+                <div class="merchant-logo">
+                    qofa
+                </div>
+
+                <div class="merchant-profile">
+
+                    <div
+                        class="avatar"
+                        data-business-avatar
+                    >
+                        T
+                    </div>
+
+                    <div>
+                        <strong data-business-name>
+                            Test Shop
+                        </strong>
+
+                        <small
+                            style="
+                                display:block;
+                                color:#888;
+                                margin-top:4px;
+                            "
+                        >
+                            Merchant
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <nav class="merchant-nav">
+
+                    <button
+                        data-view="dashboard-view"
+                        onclick="openMerchantView('dashboard-view')"
+                    >
+                        Overview
+                    </button>
+
+                    <button
+                        data-view="analytics-view"
+                        onclick="openMerchantView('analytics-view')"
+                    >
+                        <span data-i18n="analytics">
+                            Analytics
+                        </span>
+                    </button>
+
+                    <button
+                        data-view="brand-view"
+                        onclick="openMerchantView('brand-view')"
+                    >
+                        <span data-i18n="brand">
+                            My brand
+                        </span>
+                    </button>
+
+                    <button
+                        data-view="nader-view"
+                        onclick="
+                            openMerchantView('nader-view');
+                            initializeNader();
+                        "
+                    >
+                        <span data-i18n="nader">
+                            Nader
+                        </span>
+                    </button>
+
+                    <button
+                        data-view="support-view"
+                        onclick="openMerchantView('support-view')"
+                    >
+                        <span data-i18n="support">
+                            Support
+                        </span>
+                    </button>
+
+                    <button
+                        onclick="openConsumerWebsite()"
+                    >
+                        Consumer page
+                    </button>
+
+                </nav>
+
+            </aside>
+
+
+            <!-- MAIN -->
+
+            <main class="merchant-main">
+
+
+                <!-- DASHBOARD -->
+
+                <section
+                    id="dashboard-view"
+                    class="merchant-view active-view"
+                >
+
+                    <div class="merchant-header">
+
+                        <div>
+
+                            <div class="eyebrow">
+                                BUSINESS OVERVIEW
+                            </div>
+
+                            <h1 data-i18n="dashboardTitle">
+                                Business overview
+                            </h1>
+
+                        </div>
+
+                        <button
+                            class="btn btn-dark"
+                            onclick="
+                                openMerchantView('nader-view');
+                                initializeNader();
+                            "
+                        >
+                            <span data-i18n="askNader">
+                                Ask Nader
+                            </span>
+                        </button>
+
+                    </div>
+
+
+                    <div class="metric-grid">
+
+                        <div class="metric-card">
+
+                            <div
+                                class="metric-label"
+                                data-i18n="revenue"
+                            >
+                                Revenue
+                            </div>
+
+                            <div class="metric-value">
+                                $12,000
+                            </div>
+
+                            <div class="metric-change negative">
+                                ↓ 20%
+                            </div>
+
+                        </div>
+
+
+                        <div class="metric-card">
+
+                            <div
+                                class="metric-label"
+                                data-i18n="orders"
+                            >
+                                Orders
+                            </div>
+
+                            <div class="metric-value">
+                                100
+                            </div>
+
+                            <div class="metric-change negative">
+                                ↓ 20%
+                            </div>
+
+                        </div>
+
+
+                        <div class="metric-card">
+
+                            <div
+                                class="metric-label"
+                                data-i18n="traffic"
+                            >
+                                Traffic
+                            </div>
+
+                            <div class="metric-value">
+                                2,000
+                            </div>
+
+                            <div class="metric-change negative">
+                                ↓ 9.09%
+                            </div>
+
+                        </div>
+
+
+                        <div class="metric-card">
+
+                            <div
+                                class="metric-label"
+                                data-i18n="conversion"
+                            >
+                                Conversion
+                            </div>
+
+                            <div class="metric-value">
+                                5.00%
+                            </div>
+
+                            <div class="metric-change">
+                                100 / 2,000
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-grid">
+
+                        <div class="dashboard-card">
+
+                            <h2>
+                                Revenue performance
+                            </h2>
+
+                            <div class="chart-placeholder">
+                                Revenue chart
+                            </div>
+
+                        </div>
+
+                        <div class="dashboard-card">
+
+                            <h2>
+                                Nader's insight
+                            </h2>
+
+                            <p
+                                style="
+                                    line-height:1.7;
+                                    color:#555;
+                                "
+                            >
+                                Revenue and orders decreased by 20%.
+                                Traffic decreased by 9.09%.
+                                This suggests the business may have
+                                both a traffic problem and a conversion
+                                problem.
+                            </p>
+
+                            <br>
+
+                            <button
+                                class="btn btn-dark"
+                                onclick="
+                                    openMerchantView('nader-view');
+                                    initializeNader();
+                                "
+                            >
+                                Ask Nader about this
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ANALYTICS -->
+
+                <section
+                    id="analytics-view"
+                    class="merchant-view"
+                >
+
+                    <div class="merchant-header">
+
+                        <div>
+
+                            <div class="eyebrow">
+                                DATA
+                            </div>
+
+                            <h1>
+                                Analytics
+                            </h1>
+
+                        </div>
+
+                    </div>
+
+                    <div class="dashboard-grid">
+
+                        <div class="dashboard-card">
+
+                            <h2>
+                                Traffic
+                            </h2>
+
+                            <div class="chart-placeholder">
+                                Traffic performance
+                            </div>
+
+                        </div>
+
+                        <div class="dashboard-card">
+
+                            <h2>
+                                Conversion
+                            </h2>
+
+                            <div class="chart-placeholder">
+                                Conversion performance
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="dashboard-card">
+
+                        <h2>
+                            Business interpretation
+                        </h2>
+
+                        <p
+                            style="
+                                color:#555;
+                                line-height:1.8;
+                            "
+                        >
+                            Your dashboards are designed to show
+                            the numbers first and then give Nader
+                            the context needed to interpret them.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- BRAND -->
+
+                <section
+                    id="brand-view"
+                    class="merchant-view"
+                >
+
+                    <div class="merchant-header">
+
+                        <div>
+
+                            <div class="eyebrow">
+                                BRAND
+                            </div>
+
+                            <h1>
+                                <span data-business-name>
+                                    Test Shop
+                                </span>
+                            </h1>
+
+                            <p
+                                style="
+                                    color:#777;
+                                    margin-top:10px;
+                                "
+                            >
+                                <span data-business-domain>
+                                    testshop.qofa.com
+                                </span>
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="btn btn-dark"
+                            onclick="editBrand()"
+                        >
+                            <span data-i18n="editBrand">
+                                Edit brand
+                            </span>
+                        </button>
+
+                    </div>
+
+
+                    <div class="dashboard-card">
+
+                        <div
+                            style="
+                                padding:15px;
+                                background:#f7f4ee;
+                                margin-bottom:20px;
+                            "
+                        >
+                            <strong data-i18n="websitePreview">
+                                Consumer website preview
+                            </strong>
+                        </div>
+
+                        <div
+                            style="
+                                min-height:400px;
+                                border:1px solid #e5e1d9;
+                                background:white;
+                            "
+                        >
+
+                            <div
+                                style="
+                                    padding:25px;
+                                    border-bottom:1px solid #eee;
+                                    font-weight:bold;
+                                "
+                                data-business-name
+                            >
+                                Test Shop
+                            </div>
+
+                            <div
+                                style="
+                                    padding:80px 40px;
+                                "
+                            >
+
+                                <div class="eyebrow">
+                                    WELCOME
+                                </div>
+
+                                <h2
+                                    style="
+                                        font-size:55px;
+                                        letter-spacing:-4px;
+                                    "
+                                    data-business-name
+                                >
+                                    Test Shop
+                                </h2>
+
+                                <p
+                                    style="
+                                        margin-top:20px;
+                                        color:#777;
+                                    "
+                                >
+                                    Your business website,
+                                    powered by Qofa.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <button
+                            class="btn btn-light"
+                            onclick="openConsumerWebsite()"
+                        >
+                            <span data-i18n="viewBrand">
+                                View consumer page
+                            </span>
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- NADER -->
+
+                <section
+                    id="nader-view"
+                    class="merchant-view"
+                >
+
+                    <div class="merchant-header">
+
+                        <div>
+
+                            <div class="eyebrow">
+                                QOFA INTELLIGENCE
+                            </div>
+
+                            <h1>
+                                Nader
+                            </h1>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="nader-layout">
+
+                        <div class="chat-box">
+
+                            <div id="nader-messages"></div>
+
+                            <form
+                                id="nader-form"
+                                class="chat-form"
+                            >
+
+                                <input
+                                    id="nader-input"
+                                    placeholder="Ask Nader about your business..."
+                                    autocomplete="off"
+                                >
+
+                                <button type="submit">
+                                    Send
+                                </button>
+
+                            </form>
+
+                        </div>
+
+
+                        <aside class="nader-side">
+
+                            <h2>
+                                Nader
+                            </h2>
+
+                            <p>
+                                Your business agent. Nader works
+                                with your business information rather
+                                than giving generic advice.
+                            </p>
+
+                            <button
+                                class="suggestion"
+                                onclick="askNader('Why did my sales drop?')"
+                            >
+                                Why did my sales drop?
+                            </button>
+
+                            <button
+                                class="suggestion"
+                                onclick="askNader('How is my traffic performing?')"
+                            >
+                                How is my traffic performing?
+                            </button>
+
+                            <button
+                                class="suggestion"
+                                onclick="askNader('Why do people visit but not buy?')"
+                            >
+                                Why do people visit but not buy?
+                            </button>
+
+                            <button
+                                class="suggestion"
+                                onclick="askNader('I have too much stock')"
+                            >
+                                I have too much stock
+                            </button>
+
+                            <br><br>
+
+                            <button
+                                class="btn"
+                                style="
+                                    background:white;
+                                    color:black;
+                                    width:100%;
+                                "
+                                onclick="openMerchantView('support-view')"
+                            >
+                                Contact support
+                            </button>
+
+                        </aside>
+
+                    </div>
+
+                </section>
+
+
+                <!-- SUPPORT -->
+
+                <section
+                    id="support-view"
+                    class="merchant-view"
+                >
+
+                    <div class="merchant-header">
+
+                        <div>
+
+                            <div class="eyebrow">
+                                QOFA SUPPORT
+                            </div>
+
+                            <h1 data-i18n="supportTitle">
+                                Contact Qofa support
+                            </h1>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="support-card">
+
+                        <p
+                            style="
+                                color:#666;
+                                line-height:1.7;
+                                margin-bottom:30px;
+                            "
+                            data-i18n="supportText"
+                        >
+                            If Nader cannot answer your question,
+                            or you need help from our team,
+                            submit a ticket.
+                        </p>
+
+
+                        <div id="support-form-container">
+
+                            <form
+                                id="support-form"
+                            >
+
+                                <div class="field">
+
+                                    <label data-i18n="subject">
+                                        Subject
+                                    </label>
+
+                                    <input
+                                        name="subject"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="field">
+
+                                    <label data-i18n="message">
+                                        Describe your issue
+                                    </label>
+
+                                    <textarea
+                                        name="message"
+                                        required
+                                    ></textarea>
+
+                                </div>
+
+
+                                <button
+                                    class="btn btn-dark"
+                                    type="submit"
+                                >
+                                    <span data-i18n="submitTicket">
+                                        Submit ticket
+                                    </span>
+                                </button>
+
+                            </form>
+
+                        </div>
+
+
+                        <div
+                            id="ticket-success"
+                            class="hidden"
+                            style="
+                                padding:25px;
+                                background:#f1f7f3;
+                                border:1px solid #d4e7da;
+                            "
+                        >
+
+                            <h3 data-i18n="ticketSuccess">
+                                Your ticket has been submitted.
+                            </h3>
+
+                            <p
+                                style="
+                                    margin-top:10px;
+                                    color:#666;
+                                "
+                            >
+                                <span data-i18n="ticketNumber">
+                                    Ticket number
+                                </span>:
+
+                                <strong id="ticket-number">
+                                    QF-000000
+                                </strong>
+                            </p>
+
+                            <br>
+
+                            <button
+                                class="btn btn-light"
+                                onclick="createAnotherTicket()"
+                            >
+                                Create another ticket
+                            </button>
+
+                        </div>
+
+
+                        <div class="ticket-list">
+
+                            <h3>
+                                Your tickets
+                            </h3>
+
+                            <br>
+
+                            <div id="ticket-list-content">
+
+                                <p
+                                    style="
+                                        color:#888;
+                                    "
+                                >
+                                    No tickets yet.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONSUMER WEBSITE
+    ========================== -->
+
+    <section id="consumer-screen" class="screen">
+
+        <div class="consumer-top">
+
+            <strong data-business-name>
+                Test Shop
+            </strong>
+
+            <button
+                class="btn btn-light"
+                onclick="showScreen('merchant-screen')"
+            >
+                Merchant dashboard
+            </button>
+
+        </div>
+
+
+        <div class="consumer-hero">
+
+            <div class="consumer-content">
+
+                <div class="eyebrow">
+                    WELCOME
+                </div>
+
+                <h1 id="consumer-business-name">
+                    Test Shop
+                </h1>
+
+                <p>
+                    Welcome to our business.
+                    This is the consumer-facing website
+                    powered by Qofa.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="section">
+
+            <div class="eyebrow">
+                ABOUT
+            </div>
+
+            <h2 class="section-title">
+                Built for our customers.
+            </h2>
+
+            <p class="section-text">
+                This page is controlled by the merchant through
+                their Qofa dashboard.
+            </p>
+
+        </div>
+
+
+        <footer class="consumer-footer">
+
+            <div class="logo">
+                qofa
+            </div>
+
+            <br>
+
+            <p>
+                <span data-business-name>
+                    Test Shop
+                </span>
+
+                ·
+
+                <span data-business-domain>
+                    testshop.qofa.com
+                </span>
+            </p>
+
+        </footer>
+
+    </section>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>

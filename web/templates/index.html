@@ -1492,6 +1492,68 @@
             resize: vertical;
         }
 
+        .store-banner-upload {
+            display: grid;
+            gap: 10px;
+        }
+
+        .store-banner-preview {
+            display: grid;
+            min-height: 150px;
+            place-items: center;
+            overflow: hidden;
+            border: 1px dashed #a9d8e8;
+            border-radius: 12px;
+            color: #587082;
+            background: linear-gradient(135deg, #eefaff, #ffffff);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .store-banner-preview.has-store-banner {
+            border-style: solid;
+            background: #eaf8ff;
+        }
+
+        .store-banner-preview img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .store-banner-upload-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .store-banner-upload-controls input[type="file"] {
+            min-width: 0;
+            font-size: 12px;
+        }
+
+        .store-banner-remove {
+            padding: 9px 11px;
+            border: 0;
+            border-radius: 8px;
+            color: #a52d50;
+            background: #fff0f4;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .store-banner-remove:disabled {
+            opacity: .48;
+            cursor: not-allowed;
+        }
+
+        .store-field-hint {
+            color: #6b8290;
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
         .store-field input:focus,
         .store-field select:focus,
         .store-field textarea:focus {
@@ -1746,6 +1808,30 @@
 
         #consumer-screen .consumer-hero p {
             color: #4d6f82;
+        }
+
+        #consumer-screen .consumer-hero.has-store-banner {
+            background-size: cover;
+            background-position: center;
+        }
+
+        #consumer-screen .consumer-hero.has-store-banner h1,
+        #consumer-screen .consumer-hero.has-store-banner p {
+            color: white;
+        }
+
+        #consumer-screen .consumer-hero.has-store-banner .storefront-kicker {
+            color: #c9fff5;
+        }
+
+        .editor-store-preview-body.has-store-banner {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .editor-store-preview-body.has-store-banner p,
+        .editor-store-preview-body.has-store-banner h3 {
+            color: white;
         }
 
         .storefront-main {
@@ -3706,6 +3792,20 @@
                                 </div>
 
                                 <div class="store-field full">
+                                    <label data-i18n="storefrontBanner">Storefront banner</label>
+                                    <div class="store-banner-upload">
+                                        <div id="store-banner-preview" class="store-banner-preview">
+                                            <span data-i18n="bannerPreviewEmpty">Your storefront banner preview will appear here.</span>
+                                        </div>
+                                        <div class="store-banner-upload-controls">
+                                            <input id="store-banner-image" type="file" accept="image/png,image/jpeg,image/webp" onchange="handleStoreBannerImage(event)">
+                                            <button id="remove-store-banner" class="store-banner-remove" type="button" onclick="removeStoreBanner()" disabled data-i18n="removeBanner">Remove banner</button>
+                                        </div>
+                                        <span class="store-field-hint" data-i18n="bannerUploadHint">Add a wide JPG, PNG, or WebP image up to 1.5 MB.</span>
+                                    </div>
+                                </div>
+
+                                <div class="store-field full">
                                     <label for="store-theme" data-i18n="storeTheme">Visual theme</label>
                                     <select id="store-theme" name="storeTheme">
                                         <option value="ocean" data-i18n="themeOcean">Ocean blue</option>
@@ -4178,5 +4278,3 @@
 
 </body>
 </html>
-
-

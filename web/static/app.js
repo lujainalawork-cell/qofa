@@ -229,6 +229,12 @@ const translations = {
         storeName: "Shop name",
         storeTagline: "Hero headline",
         storeDescription: "Shop story",
+        storefrontBanner: "Storefront banner",
+        bannerUpload: "Hero banner image",
+        bannerUploadHint: "Add a wide JPG, PNG, or WebP image up to 1.5 MB.",
+        bannerPreviewEmpty: "Your storefront banner preview will appear here.",
+        removeBanner: "Remove banner",
+        bannerImageTooLarge: "Choose a banner image smaller than 1.5 MB.",
         storeTheme: "Visual theme",
         themeOcean: "Ocean blue",
         themeSunset: "Sunset coral",
@@ -494,6 +500,12 @@ const translations = {
         storeName: "Nom de la boutique",
         storeTagline: "Titre d'accueil",
         storeDescription: "Histoire de la boutique",
+        storefrontBanner: "Bannière de la boutique",
+        bannerUpload: "Image de bannière",
+        bannerUploadHint: "Ajoutez une image JPG, PNG ou WebP large de 1,5 Mo maximum.",
+        bannerPreviewEmpty: "L’aperçu de votre bannière apparaîtra ici.",
+        removeBanner: "Supprimer la bannière",
+        bannerImageTooLarge: "Choisissez une bannière de moins de 1,5 Mo.",
         storeTheme: "Thème visuel",
         themeOcean: "Bleu océan",
         themeSunset: "Corail coucher de soleil",
@@ -759,6 +771,12 @@ const translations = {
         storeName: "اسم المتجر",
         storeTagline: "عنوان الواجهة",
         storeDescription: "قصة المتجر",
+        storefrontBanner: "بانر واجهة المتجر",
+        bannerUpload: "صورة بانر الواجهة",
+        bannerUploadHint: "أضف صورة JPG أو PNG أو WebP عريضة بحجم يصل إلى 1.5 ميغابايت.",
+        bannerPreviewEmpty: "ستظهر معاينة بانر واجهة متجرك هنا.",
+        removeBanner: "إزالة البانر",
+        bannerImageTooLarge: "اختر صورة بانر أصغر من 1.5 ميغابايت.",
         storeTheme: "المظهر البصري",
         themeOcean: "أزرق المحيط",
         themeSunset: "مرجاني الغروب",
@@ -862,6 +880,9 @@ function t(key) {
 }
 
 function showScreen(id) {
+    if (id === "language-screen" && state.hasLanguagePreference) {
+        id = "home-screen";
+    }
     stopImpactTour();
 
     document.querySelectorAll(".screen").forEach(screen => {
@@ -1000,6 +1021,7 @@ function loadLanguagePreference() {
         const savedLanguage = localStorage.getItem("qofa-language");
         if (isSupportedLanguage(savedLanguage)) {
             state.language = savedLanguage;
+            state.hasLanguagePreference = true;
             return true;
         }
     } catch (error) {
@@ -1013,6 +1035,7 @@ function setLanguage(language) {
     if (!isSupportedLanguage(language)) return;
 
     state.language = language;
+    state.hasLanguagePreference = true;
     saveLanguagePreference();
     applyLanguage();
     updateQofaLogos();
@@ -1509,6 +1532,7 @@ const defaultProductTranslationKeys = ["defaultProductOne", "defaultProductTwo",
 
 function getDefaultStorefront() {
     return {
+        bannerImage: "",
         tagline: t("defaultStoreTagline"),
         description: t("defaultStoreDescription"),
         products: [
@@ -1564,6 +1588,9 @@ function getStorefront() {
     }
 
     return {
+        bannerImage: typeof custom.bannerImage === "string" && custom.bannerImage.startsWith("data:image/")
+            ? custom.bannerImage
+            : "",
         tagline: translateSavedStarterCopy(custom.tagline, "defaultStoreTagline"),
         description: translateSavedStarterCopy(custom.description, "defaultStoreDescription"),
         products: Array.isArray(custom.products) && custom.products.length > 0
@@ -1609,6 +1636,7 @@ function hydrateStoreEditor() {
     document.getElementById("store-tagline").value = storefront.tagline;
     document.getElementById("store-description").value = storefront.description;
     document.getElementById("store-theme").value = state.business.storefrontTheme;
+    updateStoreBannerPreview(storefront.bannerImage);
 
     renderStoreProductEditor(storefront.products);
 
@@ -1692,6 +1720,49 @@ function handleProductImage(event, index) {
     reader.readAsDataURL(file);
 }
 
+function updateStoreBannerPreview(imageUrl) {
+    const preview = document.getElementById("store-banner-preview");
+    const removeButton = document.getElementById("remove-store-banner");
+    if (!preview) return;
+
+    const validImage = typeof imageUrl === "string" && imageUrl.startsWith("data:image/");
+    preview.dataset.bannerImage = validImage ? imageUrl : "";
+    preview.classList.toggle("has-store-banner", validImage);
+    preview.innerHTML = validImage
+        ? `<img src="${escapeStoreHtml(imageUrl)}" alt="${escapeStoreHtml(t("bannerUpload"))}">`
+        : `<span>${escapeStoreHtml(t("bannerPreviewEmpty"))}</span>`;
+
+    if (removeButton) {
+        removeButton.disabled = !validImage;
+    }
+}
+
+function handleStoreBannerImage(event) {
+    const file = event.currentTarget.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/") || file.size > 1.5 * 1024 * 1024) {
+        window.alert(t("bannerImageTooLarge"));
+        event.currentTarget.value = "";
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+        const imageUrl = typeof reader.result === "string" ? reader.result : "";
+        if (imageUrl.startsWith("data:image/")) {
+            updateStoreBannerPreview(imageUrl);
+        }
+    });
+    reader.readAsDataURL(file);
+}
+
+function removeStoreBanner() {
+    const input = document.getElementById("store-banner-image");
+    if (input) input.value = "";
+    updateStoreBannerPreview("");
+}
+
 function saveStorefront(event) {
     event.preventDefault();
 
@@ -1713,6 +1784,7 @@ function saveStorefront(event) {
     }
 
     state.business.storefront = {
+        bannerImage: document.getElementById("store-banner-preview")?.dataset.bannerImage || "",
         tagline: String(data.get("storeTagline") || "").trim(),
         description: String(data.get("storeDescription") || "").trim(),
         products
@@ -1778,6 +1850,17 @@ function renderStorefront() {
     const consumerName = document.getElementById("consumer-business-name");
     const consumerDescription = document.getElementById("storefront-description");
     const consumerStory = document.getElementById("storefront-story");
+    const consumerHero = document.querySelector("#consumer-screen .consumer-hero");
+    const editorPreview = document.querySelector(".editor-store-preview-body");
+
+    [consumerHero, editorPreview].forEach(element => {
+        if (!element) return;
+        const hasBanner = Boolean(storefront.bannerImage);
+        element.classList.toggle("has-store-banner", hasBanner);
+        element.style.backgroundImage = hasBanner
+            ? `linear-gradient(100deg, rgba(3, 44, 70, .78), rgba(3, 44, 70, .25)), url("${storefront.bannerImage}")`
+            : "";
+    });
 
     if (previewName) previewName.textContent = state.business.name;
     if (previewTagline) previewTagline.textContent = storefront.tagline;

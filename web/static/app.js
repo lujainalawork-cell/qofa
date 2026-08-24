@@ -285,7 +285,39 @@ const translations = {
         beauty: "Beauty",
         services: "Services",
         other: "Other",
-        otherBusiness: "Other"
+        otherBusiness: "Other",
+        tourEyebrow: "COMMUNITY COMMERCE INFRASTRUCTURE",
+        tourTitle: "Build the local commerce network your community deserves.",
+        tourText: "Qofa helps local merchants serve more people, gives buyers a trusted way to shop, and turns everyday activity into clear community demand signals.",
+        impactMerchantTitle: "More resilient merchants",
+        impactMerchantText: "A digital storefront and clear operating tools for every kind of local business.",
+        impactBuyerTitle: "Easier access for buyers",
+        impactBuyerText: "A simple multilingual shopping experience built for the phones people already use.",
+        impactCommunityTitle: "Stronger local economies",
+        impactCommunityText: "Better demand visibility helps merchants stock what their communities actually need.",
+        tourGuideEyebrow: "SEE QOFA IN ACTION",
+        tourGuideText: "Follow the community commerce loop—from one merchant to a stronger local marketplace.",
+        tourStepOneLabel: "1. Launch locally",
+        tourStepOneTitle: "A merchant creates a shop people can understand.",
+        tourStepOneText: "They choose their colors, add products and prices, then publish a storefront in English, French, or Arabic.",
+        tourStepTwoLabel: "2. Buy with confidence",
+        tourStepTwoTitle: "A customer finds, verifies, and buys from a trusted local store.",
+        tourStepTwoText: "A low-friction checkout turns a community shopper into a verified customer without complex sign-up steps.",
+        tourStepThreeLabel: "3. Learn what matters",
+        tourStepThreeTitle: "The merchant sees signals, not spreadsheets.",
+        tourStepThreeText: "Qofa brings orders, demand, and customer behavior into one clear dashboard, with Nader ready to guide the next decision.",
+        tourDashboardTag: "COMMUNITY COMMERCE VIEW",
+        tourDashboardTitle: "One clear view of a local economy.",
+        tourMetricMerchants: "Active merchants",
+        tourMetricOrders: "Verified orders",
+        tourMetricDemand: "High-demand category",
+        tourMetricDemandValue: "Fresh essentials",
+        tourDashboardNote: "Every useful signal helps a local merchant serve their community better.",
+        tourInvestorEyebrow: "INVESTOR LENS",
+        tourInvestorTitle: "A repeatable operating layer for local commerce.",
+        tourInvestorText: "Qofa connects merchant tools, buyer trust, and demand intelligence in one scalable product loop—creating a clear path from community adoption to recurring revenue.",
+        tourPlanContext: "Last step: choose the support level that fits your business today.",
+        tourPlansButton: "See plans"
     },
     fr: {
         languageTitle: "Choisissez votre langue",
@@ -518,7 +550,39 @@ const translations = {
         beauty: "Beauté",
         services: "Services",
         other: "Autre",
-        otherBusiness: "Autre"
+        otherBusiness: "Autre",
+        tourEyebrow: "INFRASTRUCTURE DU COMMERCE COMMUNAUTAIRE",
+        tourTitle: "Construisez le réseau commercial local que votre communauté mérite.",
+        tourText: "Qofa aide les commerçants locaux à servir plus de personnes, offre aux acheteurs une façon fiable d’acheter et transforme l’activité quotidienne en signaux clairs de demande locale.",
+        impactMerchantTitle: "Des commerçants plus résilients",
+        impactMerchantText: "Une vitrine numérique et des outils simples pour chaque entreprise locale.",
+        impactBuyerTitle: "Un accès plus simple pour les acheteurs",
+        impactBuyerText: "Une expérience d’achat multilingue, conçue pour les téléphones déjà utilisés au quotidien.",
+        impactCommunityTitle: "Des économies locales plus fortes",
+        impactCommunityText: "Une meilleure visibilité de la demande aide les commerçants à proposer ce dont leur communauté a réellement besoin.",
+        tourGuideEyebrow: "DÉCOUVREZ QOFA EN ACTION",
+        tourGuideText: "Suivez la boucle du commerce communautaire : d’un commerçant à un marché local plus solide.",
+        tourStepOneLabel: "1. Lancer localement",
+        tourStepOneTitle: "Un commerçant crée une boutique que chacun peut comprendre.",
+        tourStepOneText: "Il choisit ses couleurs, ajoute ses produits et ses prix, puis publie une vitrine en anglais, français ou arabe.",
+        tourStepTwoLabel: "2. Acheter en confiance",
+        tourStepTwoTitle: "Un client découvre, vérifie et achète auprès d’un commerce local fiable.",
+        tourStepTwoText: "Un paiement simple transforme un visiteur en client vérifié sans inscription complexe.",
+        tourStepThreeLabel: "3. Comprendre l’essentiel",
+        tourStepThreeTitle: "Le commerçant voit des signaux, pas des tableurs.",
+        tourStepThreeText: "Qofa réunit commandes, demande et comportement client dans un tableau de bord clair, avec Nader pour guider la prochaine décision.",
+        tourDashboardTag: "VUE DU COMMERCE COMMUNAUTAIRE",
+        tourDashboardTitle: "Une vue claire de l’économie locale.",
+        tourMetricMerchants: "Commerçants actifs",
+        tourMetricOrders: "Commandes vérifiées",
+        tourMetricDemand: "Catégorie très demandée",
+        tourMetricDemandValue: "Produits essentiels frais",
+        tourDashboardNote: "Chaque signal utile aide un commerçant local à mieux servir sa communauté.",
+        tourInvestorEyebrow: "REGARD INVESTISSEUR",
+        tourInvestorTitle: "Une couche opérationnelle reproductible pour le commerce local.",
+        tourInvestorText: "Qofa relie outils marchands, confiance des acheteurs et intelligence de la demande dans une boucle produit évolutive, créant un chemin clair de l’adoption communautaire aux revenus récurrents.",
+        tourPlanContext: "Dernière étape : choisissez le niveau d’accompagnement adapté à votre activité aujourd’hui.",
+        tourPlansButton: "Voir les offres"
     },
     ar: {
         languageTitle: "اختر لغتك",
@@ -751,7 +815,39 @@ const translations = {
         beauty: "الجمال",
         services: "الخدمات",
         other: "أخرى",
-        otherBusiness: "أخرى"
+        otherBusiness: "أخرى",
+        tourEyebrow: "بنية تحتية للتجارة المجتمعية",
+        tourTitle: "ابنِ شبكة التجارة المحلية التي يستحقها مجتمعك.",
+        tourText: "تساعد قُفَّة التجار المحليين على خدمة عدد أكبر من الناس، وتمنح المشترين طريقة موثوقة للتسوق، وتحول النشاط اليومي إلى مؤشرات واضحة لطلب المجتمع.",
+        impactMerchantTitle: "تجار أكثر مرونة",
+        impactMerchantText: "واجهة متجر رقمية وأدوات تشغيل واضحة لكل أنواع الأعمال المحلية.",
+        impactBuyerTitle: "وصول أسهل للمشترين",
+        impactBuyerText: "تجربة تسوق متعددة اللغات وبسيطة، مصممة للهواتف التي يستخدمها الناس بالفعل.",
+        impactCommunityTitle: "اقتصادات محلية أقوى",
+        impactCommunityText: "رؤية أفضل للطلب تساعد التجار على توفير ما يحتاجه مجتمعهم فعلاً.",
+        tourGuideEyebrow: "شاهد قُفَّة وهي تعمل",
+        tourGuideText: "اتبع دورة التجارة المجتمعية، من تاجر واحد إلى سوق محلي أقوى.",
+        tourStepOneLabel: "1. إطلاق محلي",
+        tourStepOneTitle: "ينشئ التاجر متجراً يفهمه الجميع.",
+        tourStepOneText: "يختار الألوان ويضيف المنتجات والأسعار، ثم ينشر واجهة متجر بالإنجليزية أو الفرنسية أو العربية.",
+        tourStepTwoLabel: "2. شراء بثقة",
+        tourStepTwoTitle: "يكتشف العميل متجراً محلياً موثوقاً ويتحقق منه ويشتري.",
+        tourStepTwoText: "تحول عملية الدفع البسيطة المتسوق إلى عميل موثّق دون خطوات تسجيل معقدة.",
+        tourStepThreeLabel: "3. تعلّم ما يهم",
+        tourStepThreeTitle: "يرى التاجر مؤشرات لا جداول بيانات.",
+        tourStepThreeText: "تجمع قُفَّة الطلبات والطلب وسلوك العملاء في لوحة واحدة واضحة، ويكون نادر جاهزاً لتوجيه القرار التالي.",
+        tourDashboardTag: "عرض التجارة المجتمعية",
+        tourDashboardTitle: "رؤية واحدة واضحة للاقتصاد المحلي.",
+        tourMetricMerchants: "تجار نشطون",
+        tourMetricOrders: "طلبات موثّقة",
+        tourMetricDemand: "الفئة الأعلى طلباً",
+        tourMetricDemandValue: "أساسيات طازجة",
+        tourDashboardNote: "كل مؤشر مفيد يساعد التاجر المحلي على خدمة مجتمعه بشكل أفضل.",
+        tourInvestorEyebrow: "منظور المستثمر",
+        tourInvestorTitle: "طبقة تشغيل قابلة للتكرار للتجارة المحلية.",
+        tourInvestorText: "تربط قُفَّة أدوات التاجر وثقة المشتري وذكاء الطلب في دورة منتج قابلة للتوسع، لتصنع مساراً واضحاً من تبنّي المجتمع إلى إيرادات متكررة.",
+        tourPlanContext: "الخطوة الأخيرة: اختر مستوى الدعم الذي يناسب عملك اليوم.",
+        tourPlansButton: "عرض الباقات"
     }
 };
 
@@ -766,6 +862,8 @@ function t(key) {
 }
 
 function showScreen(id) {
+    stopImpactTour();
+
     document.querySelectorAll(".screen").forEach(screen => {
         screen.classList.remove("active");
     });
@@ -775,6 +873,10 @@ function showScreen(id) {
     if (screen) {
         screen.classList.add("active");
         window.scrollTo(0, 0);
+    }
+
+    if (id === "impact-tour-screen") {
+        startImpactTour();
     }
 }
 
@@ -975,9 +1077,54 @@ function handleRegistration(event) {
     state.business.type = state.user.businessType;
     state.business.domain = `${slugify(state.user.businessName)}.qofa.com`;
 
-    showScreen("packages-screen");
+    showScreen("impact-tour-screen");
 }
 
+
+
+/* =========================
+   COMMUNITY IMPACT TOUR
+========================= */
+
+let impactTourTimer = null;
+let impactTourStep = 0;
+
+function setImpactTourStep(step) {
+    const panels = Array.from(document.querySelectorAll("[data-tour-panel]"));
+    const tabs = Array.from(document.querySelectorAll("[data-tour-step]"));
+    if (!panels.length) return;
+
+    impactTourStep = ((step % panels.length) + panels.length) % panels.length;
+
+    panels.forEach((panel, index) => {
+        panel.classList.toggle("hidden", index !== impactTourStep);
+    });
+
+    tabs.forEach((tab, index) => {
+        const isActive = index === impactTourStep;
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", String(isActive));
+    });
+
+    document.querySelectorAll("[data-tour-dot]").forEach((dot, index) => {
+        dot.classList.toggle("active", index === impactTourStep);
+    });
+}
+
+function startImpactTour() {
+    stopImpactTour();
+    setImpactTourStep(0);
+    impactTourTimer = window.setInterval(() => {
+        setImpactTourStep(impactTourStep + 1);
+    }, 5200);
+}
+
+function stopImpactTour() {
+    if (impactTourTimer) {
+        window.clearInterval(impactTourTimer);
+        impactTourTimer = null;
+    }
+}
 
 /* =========================
    PACKAGES

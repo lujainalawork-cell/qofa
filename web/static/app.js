@@ -1,4 +1,4 @@
-﻿// QOFA WEBSITE – FRONTEND DEMO
+// QOFA WEBSITE – FRONTEND DEMO
 // Main flow:
 // Language → Home → Register → Package → Payment → Launch → Merchant Dashboard
 // Dashboard → Brand / Analytics / Nader / Support
@@ -60,6 +60,7 @@ const translations = {
         english: "English",
         french: "Français",
         arabic: "العربية",
+        language: "Language",
         home: "Home",
         platformNav: "Platform",
         how: "How it works",
@@ -292,6 +293,7 @@ const translations = {
         english: "Anglais",
         french: "Français",
         arabic: "Arabe",
+        language: "Langue",
         home: "Accueil",
         platformNav: "Plateforme",
         how: "Comment ça marche",
@@ -524,6 +526,7 @@ const translations = {
         english: "الإنجليزية",
         french: "الفرنسية",
         arabic: "العربية",
+        language: "اللغة",
         home: "الرئيسية",
         platformNav: "المنصة",
         how: "كيف تعمل",
@@ -856,26 +859,91 @@ function populateCountryCodes() {
 
 
 /* =========================
+   LANGUAGE PREFERENCE
+========================= */
+
+function isSupportedLanguage(language) {
+    return Object.prototype.hasOwnProperty.call(translations, language);
+}
+
+function updateQofaLogos() {
+    document.querySelectorAll("#welcome-qofa-logo, #navbar-qofa-logo").forEach(logo => {
+        logo.src = state.language === "ar"
+            ? "/static/images/qofa-logo-ar.png"
+            : "/static/images/qofa-logo-en.png";
+    });
+}
+
+function updateLanguageSwitcher() {
+    const currentLanguage = document.getElementById("current-language-code");
+    if (currentLanguage) {
+        currentLanguage.textContent = state.language.toUpperCase();
+    }
+
+    document.querySelectorAll("[data-language-option]").forEach(option => {
+        option.classList.toggle("active", option.dataset.languageOption === state.language);
+    });
+}
+
+function saveLanguagePreference() {
+    try {
+        localStorage.setItem("qofa-language", state.language);
+    } catch (error) {
+        // The language still works for the current visit if browser storage is unavailable.
+    }
+}
+
+function loadLanguagePreference() {
+    try {
+        const savedLanguage = localStorage.getItem("qofa-language");
+        if (isSupportedLanguage(savedLanguage)) {
+            state.language = savedLanguage;
+            return true;
+        }
+    } catch (error) {
+        // Fall back to the first-visit language picker.
+    }
+
+    return false;
+}
+
+function setLanguage(language) {
+    if (!isSupportedLanguage(language)) return;
+
+    state.language = language;
+    saveLanguagePreference();
+    applyLanguage();
+    updateQofaLogos();
+    updateLanguageSwitcher();
+}
+
+function toggleLanguageMenu() {
+    const menu = document.getElementById("language-menu");
+    const toggle = document.getElementById("language-toggle");
+    if (!menu || !toggle) return;
+
+    const willOpen = menu.classList.contains("hidden");
+    menu.classList.toggle("hidden", !willOpen);
+    toggle.setAttribute("aria-expanded", String(willOpen));
+}
+
+function closeLanguageMenu() {
+    document.getElementById("language-menu")?.classList.add("hidden");
+    document.getElementById("language-toggle")?.setAttribute("aria-expanded", "false");
+}
+
+/* =========================
    LANGUAGE SCREEN
 ========================= */
 
 function selectLanguage(language) {
-    state.language = language;
-
-    applyLanguage();
-
-    // Switch Qofa logo based on language
-    const logos = document.querySelectorAll(
-        "#welcome-qofa-logo, #navbar-qofa-logo"
-    );
-
-    logos.forEach(logo => {
-        logo.src = language === "ar"
-            ? "/static/images/qofa-logo-ar.png"
-            : "/static/images/qofa-logo-en.png";
-    });
-
+    setLanguage(language);
     showScreen("home-screen");
+}
+
+function changeLanguage(language) {
+    setLanguage(language);
+    closeLanguageMenu();
 }
 
 /* =========================
@@ -1706,9 +1774,16 @@ function merchantLogin() {
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+    const hasLanguagePreference = loadLanguagePreference();
     loadStorefront();
     applyLanguage();
+    updateQofaLogos();
+    updateLanguageSwitcher();
     updateBusinessUI();
+
+    if (hasLanguagePreference) {
+        showScreen("home-screen");
+    }
 
     const registrationForm = document.getElementById("registration-form");
 
@@ -1749,7 +1824,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const accountType = document.getElementById("account-type");
 
     initializeNader();
+
+    document.addEventListener("click", event => {
+        if (!event.target.closest(".language-switcher")) {
+            closeLanguageMenu();
+        }
+    });
 });
-
-
-

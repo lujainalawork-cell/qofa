@@ -1505,6 +1505,7 @@ const storefrontThemes = {
 };
 
 const storefrontIcons = ["✦", "◉", "✿"];
+const defaultProductTranslationKeys = ["defaultProductOne", "defaultProductTwo", "defaultProductThree"];
 
 function getDefaultStorefront() {
     return {
@@ -1516,6 +1517,26 @@ function getDefaultStorefront() {
             { name: t("defaultProductThree"), price: 159, icon: storefrontIcons[2] }
         ]
     };
+}
+
+function translateSavedStarterCopy(value, translationKey) {
+    if (typeof value !== "string" || !value.trim()) {
+        return t(translationKey);
+    }
+
+    const isStarterCopy = Object.values(translations).some(language =>
+        language[translationKey] === value
+    );
+
+    return isStarterCopy ? t(translationKey) : value;
+}
+
+function translateAnySavedStarterProductName(value) {
+    const translationKey = defaultProductTranslationKeys.find(key =>
+        Object.values(translations).some(language => language[key] === value)
+    );
+
+    return translationKey ? t(translationKey) : value;
 }
 
 function ensureStorefront() {
@@ -1543,11 +1564,14 @@ function getStorefront() {
     }
 
     return {
-        tagline: custom.tagline || defaults.tagline,
-        description: custom.description || defaults.description,
+        tagline: translateSavedStarterCopy(custom.tagline, "defaultStoreTagline"),
+        description: translateSavedStarterCopy(custom.description, "defaultStoreDescription"),
         products: Array.isArray(custom.products) && custom.products.length > 0
             ? custom.products.map((product, index) => ({
-                name: product.name || defaults.products[index % defaults.products.length].name,
+                name: translateSavedStarterCopy(
+                    product.name,
+                    defaultProductTranslationKeys[index % defaultProductTranslationKeys.length]
+                ),
                 price: Number.isFinite(Number(product.price))
                     ? Number(product.price)
                     : defaults.products[index % defaults.products.length].price,
@@ -1783,12 +1807,17 @@ function renderStorefront() {
     const cartTotal = document.getElementById("store-cart-total");
 
     if (cartItems) {
-        cartItems.innerHTML = state.cart.map(item => `
+        cartItems.innerHTML = state.cart.map(item => {
+            const catalogIndex = Number(item.catalogIndex);
+            const catalogProduct = Number.isInteger(catalogIndex) ? storefront.products[catalogIndex] : null;
+            const itemName = catalogProduct?.name || translateAnySavedStarterProductName(item.name);
+
+            return `
             <div class="store-cart-item">
-                <span>${escapeStoreHtml(item.name)}</span>
+                <span>${escapeStoreHtml(itemName)}</span>
                 <strong>${formatMad(item.price)}</strong>
-            </div>
-        `).join("");
+            </div>`;
+        }).join("");
     }
 
     if (cartEmpty) {
@@ -1806,6 +1835,7 @@ function addToCart(productIndex) {
     if (!product) return;
 
     state.cart.push({
+        catalogIndex: productIndex,
         name: product.name,
         price: product.price
     });

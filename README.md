@@ -39,9 +39,40 @@ Many small merchants have products and customers but lack a simple, trusted digi
 
 Qofa is built around one reinforcing loop: merchants can launch a better local shop, buyers can shop with more confidence, and the resulting demand signals can inform better decisions for the local economy. The model is designed to create value through merchant tools, buyer trust, and recurring subscription revenue—while keeping the experience approachable for first-time digital-commerce users.
 
-## Deep-tech direction
+## Offline AI submission — Nader
 
-The public prototype demonstrates Qofa's product and user journeys today. The next technical milestone is to make Nader a genuinely offline, locally runnable assistant using a quantized GGUF model and `llama.cpp`, so merchant guidance can work in low-connectivity contexts. This is a roadmap item, not a feature already claimed by the demo.
+Qofa includes **Nader**, a local merchant-assistant layer for practical business guidance in English, French, and Arabic. The challenge package uses the public `Qwen2.5-0.5B-Instruct-Q4_K_M` GGUF model with `llama.cpp`. Once the model has been downloaded, generation makes no external network request.
+
+The submission-specific files are:
+
+- `metadata.json` — challenge, model, and exactly two merchant test prompts.
+- `download_model.sh` — idempotent, credential-free GGUF downloader used by the evaluator.
+- `REPORT.md` — technical design and measurement plan.
+- `run_nader.py` — local CLI for testing the offline assistant.
+
+### Run Nader locally
+
+Install `llama.cpp` so `llama-cli` and `llama-bench` are on your `PATH`, then download the model and ask a question:
+
+```bash
+bash download_model.sh
+python run_nader.py "I have too much stock of a product. What should I do?"
+```
+
+On Windows, use the convenience downloader if Git Bash or WSL is unavailable:
+
+```powershell
+.\download_model.ps1
+python run_nader.py "I have too much stock of a product. What should I do?"
+```
+
+The official ADTC self-check is:
+
+```bash
+adtc-profiler run --submission . --mode participant --output submission.json
+```
+
+`submission.json`, the downloaded `model/` directory, and every `.gguf` file are intentionally ignored by Git.
 
 ## Technology
 

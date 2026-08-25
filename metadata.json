@@ -1,0 +1,37 @@
+{
+  "team_id": "qofa",
+  "domain": "corporate_enterprise",
+  "language_scope": ["en", "fr", "ar"],
+  "african_alpha_claim": true,
+  "budget_laptop_claim": true,
+  "submitter": {
+    "name": "Lujain Alahmadi",
+    "email": "lujainalawork@gmail.com",
+    "github_handle": "lujainalawork-cell"
+  },
+  "cross_disciplinary_pairing": {
+    "discipline": "community commerce and small-business operations",
+    "load_bearing": true,
+    "description": "Nader is an offline merchant-assistant layer for African small businesses: it turns operational questions into practical, low-cost actions when stable connectivity is unavailable."
+  },
+  "test_prompts": [
+    {
+      "prompt_id": "tp_001",
+      "prompt": "I run a small grocery shop in Morocco. A popular product has stopped selling and I have too much stock. Give me a practical three-step plan to reduce the stock without harming customer trust."
+    },
+    {
+      "prompt_id": "tp_002",
+      "prompt": "Je gère une petite boutique de vêtements avec un budget marketing très limité. Proposez un plan simple sur sept jours pour attirer davantage de clients locaux, avec des actions que je peux suivre moi-même."
+    }
+  ],
+  "model": {
+    "name": "Qwen2.5-0.5B-Instruct-Q4_K_M",
+    "runtime": "llama.cpp",
+    "quantization": "GGUF Q4_K_M",
+    "parameters_estimate": "0.5B",
+    "packaging": "binary_bundle"
+  },
+  "_runtime": {
+    "model_path": "model/Qwen2.5-0.5B-Instruct-Q4_K_M.gguf"
+  }
+}

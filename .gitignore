@@ -20,3 +20,13 @@ Thumbs.db
 # Local rollback copies, not part of the running application
 *.backup
 *.backup.*
+# Africa Deep Tech Challenge model weights and profiler output.
+# The model is downloaded locally by download_model.sh and must never be committed.
+model/
+*.gguf
+submission.json
+audit.json
+verdict.json
+.adtc-profiler/
+# Local llama.cpp binaries used only for development profiling.
+.tools/

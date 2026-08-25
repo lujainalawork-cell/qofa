@@ -2121,7 +2121,71 @@
         @media (max-width: 600px) { .impact-tour { padding: 36px 20px 64px; } .impact-tour-top { margin-bottom: 38px; } .impact-tour-intro h1 { letter-spacing: -2.5px; } .impact-benefits, .tour-dashboard-summary { grid-template-columns: 1fr; } .tour-experience, .tour-investor { padding: 18px; } .tour-dashboard { padding: 20px; } }
         @media (prefers-reduced-motion: reduce) { .tour-signal-chart span { animation: none; } }
 
+
         /* =========================
+           MERCHANT WALKTHROUGH
+        ========================= */
+
+        #merchant-walkthrough-screen { min-height: 100vh; background: radial-gradient(circle at 82% 12%, rgba(17,190,168,.19), transparent 25%), radial-gradient(circle at 6% 72%, rgba(8,123,206,.15), transparent 28%), #f4fbfd; }
+        .merchant-walkthrough { max-width: 1240px; margin: 0 auto; padding: 54px 7% 82px; }
+        .merchant-walkthrough-top { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 48px; }
+        .merchant-walkthrough-intro { max-width: 790px; margin-bottom: 38px; }
+        .merchant-walkthrough-intro h1 { margin-bottom: 16px; color: var(--qofa-deep-blue); font-size: clamp(42px, 5.8vw, 76px); line-height: .98; letter-spacing: -4px; }
+        .merchant-walkthrough-intro p { max-width: 680px; color: #507286; font-size: 18px; line-height: 1.65; }
+        .merchant-walkthrough-layout { display: grid; grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr); gap: 28px; align-items: stretch; padding: 28px; border: 1px solid #cdebf4; border-radius: 24px; background: rgba(255,255,255,.9); box-shadow: 0 22px 60px rgba(4,75,113,.09); }
+        .merchant-walkthrough-copy { display: flex; flex-direction: column; }
+        .merchant-walkthrough-tabs { display: grid; gap: 9px; margin-top: 24px; }
+        .merchant-walkthrough-tab { width: 100%; padding: 14px; border: 1px solid transparent; border-radius: 12px; color: #597485; background: #f4fafc; text-align: left; font-weight: 800; }
+        .merchant-walkthrough-tab.active { border-color: #9fdce8; color: var(--qofa-deep-blue); background: #e2f8fc; }
+        .merchant-walkthrough-panel { margin-top: 20px; padding: 19px; border-radius: 15px; background: linear-gradient(135deg, #effaff, #ffffff); }
+        .merchant-walkthrough-panel h2 { margin-bottom: 9px; color: var(--qofa-deep-blue); font-size: 25px; letter-spacing: -1px; }
+        .merchant-walkthrough-panel p { color: #527387; line-height: 1.6; }
+        .merchant-walkthrough-replay { align-self: flex-start; margin-top: auto; padding: 12px 14px; border: 1px solid #cce9f1; border-radius: 10px; color: var(--qofa-deep-blue); background: white; font-weight: 800; }
+        .merchant-walkthrough-device { position: relative; overflow: hidden; min-height: 492px; border: 8px solid #063653; border-radius: 25px; background: #eefaff; box-shadow: 0 24px 48px rgba(4,50,77,.24); }
+        .merchant-walkthrough-device::after { position: absolute; z-index: 4; top: 11px; left: 50%; width: 78px; height: 7px; border-radius: 999px; background: #063653; content: ""; transform: translateX(-50%); }
+        .merchant-walkthrough-device-top { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; min-height: 53px; padding: 0 21px; color: #e9fbff; background: #063653; font-size: 10px; font-weight: 900; letter-spacing: 1.15px; }
+        .merchant-walkthrough-device-status { padding: 6px 8px; border-radius: 999px; color: #063653; background: #c9fff5; font-size: 9px; }
+        .merchant-demo-panel { position: relative; min-height: 431px; padding: 22px; }
+        .merchant-demo-panel.hidden { display: none; }
+        .tutorial-app-title { margin-bottom: 18px; color: #0a4667; font-size: 13px; font-weight: 900; letter-spacing: .3px; }
+        .tutorial-brand-banner { position: relative; overflow: hidden; min-height: 184px; padding: 25px; border-radius: 16px; color: white; background: linear-gradient(118deg, #0b4870, #087bce 51%, #11bea8); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
+        .tutorial-brand-banner::after { position: absolute; width: 190px; height: 190px; right: -54px; bottom: -96px; border: 1px solid rgba(255,255,255,.26); border-radius: 50%; content: ""; }
+        .tutorial-brand-banner span, .tutorial-brand-banner strong { position: relative; z-index: 1; display: block; }
+        .tutorial-brand-banner span { max-width: 230px; color: #d2f8ff; font-size: 10px; font-weight: 900; letter-spacing: 1.2px; }
+        .tutorial-brand-banner strong { max-width: 285px; margin-top: 23px; font-size: clamp(30px, 4vw, 45px); line-height: .93; letter-spacing: -2.4px; }
+        .tutorial-brand-settings { display: grid; grid-template-columns: 1.2fr .8fr; gap: 12px; margin-top: 14px; }
+        .tutorial-setting-card { padding: 14px; border: 1px solid #cce9f1; border-radius: 12px; background: white; }
+        .tutorial-setting-card span { display: block; margin-bottom: 10px; color: #6d8796; font-size: 10px; font-weight: 800; }
+        .tutorial-swatches { display: flex; gap: 7px; }
+        .tutorial-swatches i { display: block; width: 20px; height: 20px; border: 2px solid white; border-radius: 50%; background: #087bce; box-shadow: 0 0 0 1px #9ed7e7; }
+        .tutorial-swatches i:nth-child(2) { background: #11bea8; } .tutorial-swatches i:nth-child(3) { background: #063653; }
+        .tutorial-upload-state { display: flex; align-items: center; gap: 8px; color: #0b5b80; font-size: 11px; font-weight: 800; }
+        .tutorial-upload-state b { display: grid; width: 24px; height: 24px; place-items: center; border-radius: 8px; color: white; background: #11bea8; }
+        .tutorial-catalog-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 17px; }
+        .tutorial-catalog-top button { padding: 9px 10px; border: 0; border-radius: 8px; color: white; background: #087bce; font-size: 11px; font-weight: 800; }
+        .tutorial-product-list { display: grid; gap: 10px; }
+        .tutorial-product-row { display: grid; grid-template-columns: 54px 1fr auto; gap: 12px; align-items: center; padding: 10px; border: 1px solid #cdeaf3; border-radius: 12px; background: white; }
+        .tutorial-product-art { display: grid; width: 54px; height: 54px; place-items: center; border-radius: 10px; color: white; background: linear-gradient(135deg, #0c82ce, #11bea8); font-size: 24px; }
+        .tutorial-product-row strong { display: block; color: #0a4667; font-size: 13px; } .tutorial-product-row span { display: block; margin-top: 5px; color: #087bce; font-size: 11px; font-weight: 800; }
+        .tutorial-product-row em { color: #11a98f; font-size: 16px; font-style: normal; font-weight: 900; }
+        .tutorial-checkout { max-width: 360px; margin: 27px auto 0; padding: 20px; border: 1px solid #cce9f1; border-radius: 18px; background: white; box-shadow: 0 14px 30px rgba(5,78,113,.1); }
+        .tutorial-checkout-title { margin-bottom: 18px; color: #0a4667; font-size: 11px; font-weight: 900; letter-spacing: 1px; }
+        .tutorial-checkout-line { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #e2f2f7; color: #597687; font-size: 12px; }
+        .tutorial-verified { display: flex; align-items: center; gap: 9px; margin: 17px 0; padding: 11px; border-radius: 10px; color: #0b735f; background: #e4fff8; font-size: 12px; font-weight: 900; }
+        .tutorial-verified b { display: grid; width: 21px; height: 21px; place-items: center; border-radius: 50%; color: white; background: #11bea8; }
+        .tutorial-order-button { width: 100%; padding: 12px; border-radius: 9px; color: white; background: #063653; text-align: center; font-size: 12px; font-weight: 900; }
+        .tutorial-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+        .tutorial-dashboard-head { grid-column: 1 / -1; padding: 20px; border-radius: 15px; color: white; background: linear-gradient(135deg, #063653, #087bce); }
+        .tutorial-dashboard-head span { display: block; margin-bottom: 9px; color: #cef7ff; font-size: 10px; font-weight: 900; letter-spacing: 1.1px; } .tutorial-dashboard-head strong { font-size: 25px; letter-spacing: -1px; }
+        .tutorial-metric-card { padding: 16px; border: 1px solid #cbe9f2; border-radius: 13px; background: white; } .tutorial-metric-card span { display: block; color: #668194; font-size: 10px; font-weight: 800; } .tutorial-metric-card strong { display: block; margin-top: 8px; color: #0a4667; font-size: 25px; }
+        .tutorial-signal-card { grid-column: 1 / -1; padding: 17px; border-radius: 13px; color: #0b5b80; background: #e6faf6; } .tutorial-signal-card strong { display: block; margin-bottom: 6px; font-size: 13px; } .tutorial-signal-card p { color: #2a766d; font-size: 12px; line-height: 1.5; }
+        .merchant-walkthrough-dots { display: flex; justify-content: center; gap: 7px; margin-top: 18px; } .merchant-walkthrough-dots span { width: 8px; height: 8px; border-radius: 999px; background: #b3d8e5; } .merchant-walkthrough-dots span.active { width: 28px; background: #087bce; }
+        .merchant-walkthrough-finish { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 28px; padding: 26px 28px; border-radius: 18px; color: white; background: #063653; }
+        .merchant-walkthrough-finish h2 { margin-bottom: 7px; font-size: 24px; letter-spacing: -1px; } .merchant-walkthrough-finish p { color: #c5e9f2; line-height: 1.55; }
+        .merchant-walkthrough-finish button { min-width: 190px; padding: 14px 18px; border: 0; border-radius: 999px; color: #063653; background: #d9fff6; font-weight: 900; }
+        @media (max-width: 900px) { .merchant-walkthrough-layout { grid-template-columns: 1fr; } .merchant-walkthrough-replay { margin-top: 22px; } .merchant-walkthrough-finish { align-items: stretch; flex-direction: column; } .merchant-walkthrough-finish button { width: 100%; } }
+        @media (max-width: 540px) { .merchant-walkthrough { padding: 36px 20px 64px; } .merchant-walkthrough-intro h1 { letter-spacing: -2.5px; } .merchant-walkthrough-layout { padding: 16px; } .merchant-walkthrough-device { min-height: 466px; border-width: 6px; } .merchant-demo-panel { padding: 17px; } .tutorial-brand-settings, .tutorial-dashboard { grid-template-columns: 1fr; } .tutorial-dashboard-head, .tutorial-signal-card { grid-column: auto; } }
+        @media (prefers-reduced-motion: reduce) { .merchant-walkthrough-device * { animation: none !important; } }/* =========================
            RESPONSIVE
         ========================= */
 
@@ -3002,7 +3066,7 @@
             </section>
             <section class="tour-investor">
                 <div><div class="eyebrow" data-i18n="tourInvestorEyebrow">INVESTOR LENS</div><h2 data-i18n="tourInvestorTitle">A repeatable operating layer for local commerce.</h2><p data-i18n="tourInvestorText">Qofa connects merchant tools, buyer trust, and demand intelligence in one scalable product loop—creating a clear path from community adoption to recurring revenue.</p></div>
-                <div><p class="tour-plan-context" data-i18n="tourPlanContext">Last step: choose the support level that fits your business today.</p><button class="tour-investor-action" type="button" onclick="showScreen('packages-screen')" data-i18n="tourPlansButton">See plans</button></div>
+                <div><p class="tour-plan-context" data-i18n="tourPlanContext">Last step: choose the support level that fits your business today.</p><button class="tour-investor-action" type="button" onclick="showScreen('merchant-walkthrough-screen')" data-i18n="tourPlansButton">See plans</button></div>
             </section>
         </main>
     </section>
@@ -3010,7 +3074,41 @@
          PACKAGES
     ========================== -->
 
-    <section id="packages-screen" class="screen">
+        <!-- MERCHANT WALKTHROUGH -->
+    <section id="merchant-walkthrough-screen" class="screen">
+        <main class="merchant-walkthrough">
+            <div class="merchant-walkthrough-top"><div class="logo"><img class="navbar-logo" src="/static/images/qofa-logo-en.png" alt="Qofa"></div><button class="tour-home-button" type="button" onclick="showScreen('home-screen')" data-i18n="home">Home</button></div>
+            <header class="merchant-walkthrough-intro"><div class="eyebrow" data-i18n="merchantTourEyebrow">MERCHANT WALKTHROUGH</div><h1 data-i18n="merchantTourTitle">See your Qofa shop come to life.</h1><p data-i18n="merchantTourText">A guided product tour from your first storefront change to a verified order.</p></header>
+            <section class="merchant-walkthrough-layout" aria-label="Merchant product walkthrough">
+                <div class="merchant-walkthrough-copy">
+                    <div class="eyebrow" data-i18n="merchantTourLive">GUIDED PRODUCT TOUR</div>
+                    <div class="merchant-walkthrough-tabs" role="tablist" aria-label="Merchant walkthrough steps">
+                        <button class="merchant-walkthrough-tab active" type="button" role="tab" aria-selected="true" data-merchant-tour-step="0" onclick="setMerchantWalkthroughStep(0)" data-i18n="merchantTourStepOneLabel">1. Shape your brand</button>
+                        <button class="merchant-walkthrough-tab" type="button" role="tab" aria-selected="false" data-merchant-tour-step="1" onclick="setMerchantWalkthroughStep(1)" data-i18n="merchantTourStepTwoLabel">2. Build your catalog</button>
+                        <button class="merchant-walkthrough-tab" type="button" role="tab" aria-selected="false" data-merchant-tour-step="2" onclick="setMerchantWalkthroughStep(2)" data-i18n="merchantTourStepThreeLabel">3. Serve buyers</button>
+                        <button class="merchant-walkthrough-tab" type="button" role="tab" aria-selected="false" data-merchant-tour-step="3" onclick="setMerchantWalkthroughStep(3)" data-i18n="merchantTourStepFourLabel">4. Learn and grow</button>
+                    </div>
+                    <article class="merchant-walkthrough-panel" data-merchant-tour-panel><h2 data-i18n="merchantTourStepOneTitle">Make the storefront feel like your business.</h2><p data-i18n="merchantTourStepOneText">Choose your colors, upload a hero banner, and tell customers what makes your shop special.</p></article>
+                    <article class="merchant-walkthrough-panel hidden" data-merchant-tour-panel><h2 data-i18n="merchantTourStepTwoTitle">Add products people can find and trust.</h2><p data-i18n="merchantTourStepTwoText">Set a price, upload product photos, and publish a collection in the languages your customers use.</p></article>
+                    <article class="merchant-walkthrough-panel hidden" data-merchant-tour-panel><h2 data-i18n="merchantTourStepThreeTitle">Turn a visit into a confident purchase.</h2><p data-i18n="merchantTourStepThreeText">Customers choose products, verify their phone, and complete an order with a simple mobile flow.</p></article>
+                    <article class="merchant-walkthrough-panel hidden" data-merchant-tour-panel><h2 data-i18n="merchantTourStepFourTitle">Use clear signals to decide what comes next.</h2><p data-i18n="merchantTourStepFourText">Your dashboard turns verified activity into useful next steps, with Nader ready to help.</p></article>
+                    <button class="merchant-walkthrough-replay" type="button" onclick="replayMerchantWalkthrough()" data-i18n="merchantTourReplay">Replay walkthrough</button>
+                </div>
+                <div>
+                    <section class="merchant-walkthrough-device" aria-label="Animated Qofa merchant product tutorial">
+                        <div class="merchant-walkthrough-device-top"><span>qofa</span><span class="merchant-walkthrough-device-status" data-i18n="merchantTourLive">GUIDED PRODUCT TOUR</span></div>
+                        <div class="merchant-demo-panel" data-merchant-tour-panel><div class="tutorial-app-title" data-i18n="brand">My brand</div><div class="tutorial-brand-banner"><span data-i18n="merchantTourBanner">NEW SEASON, LOCAL STORIES</span><strong data-i18n="merchantTourShopName">Nour & Co.</strong></div><div class="tutorial-brand-settings"><div class="tutorial-setting-card"><span data-i18n="storeTheme">Visual theme</span><div class="tutorial-swatches"><i></i><i></i><i></i></div></div><div class="tutorial-setting-card"><span data-i18n="storefrontBanner">Storefront banner</span><div class="tutorial-upload-state"><b>✓</b><span data-i18n="storeSaved">Your storefront has been updated.</span></div></div></div></div>
+                        <div class="merchant-demo-panel hidden" data-merchant-tour-panel><div class="tutorial-catalog-top"><div class="tutorial-app-title" data-i18n="products">Products</div><button type="button" data-i18n="merchantTourAddProduct">Add product</button></div><div class="tutorial-product-list"><div class="tutorial-product-row"><div class="tutorial-product-art">◉</div><div><strong data-i18n="merchantTourProductName">Atlas basket</strong><span data-i18n="merchantTourProductPrice">MAD 120</span></div><em>✓</em></div><div class="tutorial-product-row"><div class="tutorial-product-art">✦</div><div><strong data-i18n="defaultProductTwo">Customer favorite</strong><span>MAD 89</span></div><em>✓</em></div><div class="tutorial-product-row"><div class="tutorial-product-art">✿</div><div><strong data-i18n="defaultProductThree">Limited discovery</strong><span>MAD 159</span></div><em>✓</em></div></div></div>
+                        <div class="merchant-demo-panel hidden" data-merchant-tour-panel><div class="tutorial-checkout"><div class="tutorial-checkout-title" data-i18n="merchantTourCheckout">BUYER CHECKOUT</div><div class="tutorial-checkout-line"><span data-i18n="merchantTourProductName">Atlas basket</span><strong data-i18n="merchantTourProductPrice">MAD 120</strong></div><div class="tutorial-checkout-line"><span data-i18n="phone">Phone number</span><strong>+212 ••• •• 48</strong></div><div class="tutorial-verified"><b>✓</b><span data-i18n="merchantTourVerified">Verified buyer</span></div><div class="tutorial-order-button" data-i18n="merchantTourOrder">Order #QF-2048</div></div></div>
+                        <div class="merchant-demo-panel hidden" data-merchant-tour-panel><div class="tutorial-dashboard"><div class="tutorial-dashboard-head"><span data-i18n="merchantTourSignals">Store signals</span><strong>+18%</strong></div><div class="tutorial-metric-card"><span data-i18n="orders">Orders</span><strong>184</strong></div><div class="tutorial-metric-card"><span data-i18n="revenue">Revenue</span><strong>12K</strong></div><div class="tutorial-signal-card"><strong data-i18n="merchantTourSignals">Store signals</strong><p data-i18n="merchantTourSignalText">Gift baskets are trending this week.</p></div></div></div>
+                    </section>
+                    <div class="merchant-walkthrough-dots" aria-hidden="true"><span class="active" data-merchant-tour-dot></span><span data-merchant-tour-dot></span><span data-merchant-tour-dot></span><span data-merchant-tour-dot></span></div>
+                </div>
+            </section>
+            <section class="merchant-walkthrough-finish"><div><h2 data-i18n="merchantTourTitle">See your Qofa shop come to life.</h2><p data-i18n="tourPlanContext">Next: see how a merchant builds and runs a shop with Qofa.</p></div><button type="button" onclick="showScreen('packages-screen')" data-i18n="merchantTourContinue">Choose your plan</button></section>
+        </main>
+    </section>
+<section id="packages-screen" class="screen">
 
         <div class="section">
 

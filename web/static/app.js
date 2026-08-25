@@ -322,8 +322,36 @@ const translations = {
         tourInvestorEyebrow: "INVESTOR LENS",
         tourInvestorTitle: "A repeatable operating layer for local commerce.",
         tourInvestorText: "Qofa connects merchant tools, buyer trust, and demand intelligence in one scalable product loop—creating a clear path from community adoption to recurring revenue.",
-        tourPlanContext: "Last step: choose the support level that fits your business today.",
-        tourPlansButton: "See plans"
+        tourPlanContext: "Next: see how a merchant builds and runs a shop with Qofa.",
+        tourPlansButton: "Watch merchant walkthrough",
+        merchantTourEyebrow: "MERCHANT WALKTHROUGH",
+        merchantTourTitle: "See your Qofa shop come to life.",
+        merchantTourText: "A guided product tour from your first storefront change to a verified order.",
+        merchantTourStepOneLabel: "1. Shape your brand",
+        merchantTourStepOneTitle: "Make the storefront feel like your business.",
+        merchantTourStepOneText: "Choose your colors, upload a hero banner, and tell customers what makes your shop special.",
+        merchantTourStepTwoLabel: "2. Build your catalog",
+        merchantTourStepTwoTitle: "Add products people can find and trust.",
+        merchantTourStepTwoText: "Set a price, upload product photos, and publish a collection in the languages your customers use.",
+        merchantTourStepThreeLabel: "3. Serve buyers",
+        merchantTourStepThreeTitle: "Turn a visit into a confident purchase.",
+        merchantTourStepThreeText: "Customers choose products, verify their phone, and complete an order with a simple mobile flow.",
+        merchantTourStepFourLabel: "4. Learn and grow",
+        merchantTourStepFourTitle: "Use clear signals to decide what comes next.",
+        merchantTourStepFourText: "Your dashboard turns verified activity into useful next steps, with Nader ready to help.",
+        merchantTourReplay: "Replay walkthrough",
+        merchantTourContinue: "Choose your plan",
+        merchantTourLive: "GUIDED PRODUCT TOUR",
+        merchantTourShopName: "Nour & Co.",
+        merchantTourBanner: "NEW SEASON, LOCAL STORIES",
+        merchantTourAddProduct: "Add product",
+        merchantTourProductName: "Atlas basket",
+        merchantTourProductPrice: "MAD 120",
+        merchantTourCheckout: "BUYER CHECKOUT",
+        merchantTourVerified: "Verified buyer",
+        merchantTourOrder: "Order #QF-2048",
+        merchantTourSignals: "Store signals",
+        merchantTourSignalText: "Gift baskets are trending this week."
     },
     fr: {
         languageTitle: "Choisissez votre langue",
@@ -593,8 +621,36 @@ const translations = {
         tourInvestorEyebrow: "REGARD INVESTISSEUR",
         tourInvestorTitle: "Une couche opérationnelle reproductible pour le commerce local.",
         tourInvestorText: "Qofa relie outils marchands, confiance des acheteurs et intelligence de la demande dans une boucle produit évolutive, créant un chemin clair de l’adoption communautaire aux revenus récurrents.",
-        tourPlanContext: "Dernière étape : choisissez le niveau d’accompagnement adapté à votre activité aujourd’hui.",
-        tourPlansButton: "Voir les offres"
+        tourPlanContext: "Ensuite : découvrez comment un commerçant crée et gère sa boutique avec Qofa.",
+        tourPlansButton: "Voir le guide marchand",
+        merchantTourEyebrow: "GUIDE DU COMMERÇANT",
+        merchantTourTitle: "Découvrez votre boutique Qofa en action.",
+        merchantTourText: "Une visite guidée, de votre première modification de vitrine à une commande vérifiée.",
+        merchantTourStepOneLabel: "1. Créez votre marque",
+        merchantTourStepOneTitle: "Donnez à votre vitrine l’allure de votre entreprise.",
+        merchantTourStepOneText: "Choisissez vos couleurs, ajoutez une bannière et racontez ce qui rend votre boutique unique.",
+        merchantTourStepTwoLabel: "2. Créez votre catalogue",
+        merchantTourStepTwoTitle: "Ajoutez des produits que vos clients peuvent trouver et apprécier.",
+        merchantTourStepTwoText: "Définissez un prix, ajoutez des photos et publiez une collection dans les langues de vos clients.",
+        merchantTourStepThreeLabel: "3. Servez vos clients",
+        merchantTourStepThreeTitle: "Transformez une visite en achat en toute confiance.",
+        merchantTourStepThreeText: "Les clients choisissent leurs produits, vérifient leur téléphone et finalisent une commande sur mobile.",
+        merchantTourStepFourLabel: "4. Apprenez et grandissez",
+        merchantTourStepFourTitle: "Utilisez des signaux clairs pour décider de la suite.",
+        merchantTourStepFourText: "Votre tableau de bord transforme l’activité vérifiée en prochaines étapes utiles, avec Nader à vos côtés.",
+        merchantTourReplay: "Rejouer le guide",
+        merchantTourContinue: "Choisir mon offre",
+        merchantTourLive: "VISITE PRODUIT GUIDÉE",
+        merchantTourShopName: "Nour & Co.",
+        merchantTourBanner: "NOUVELLE SAISON, HISTOIRES LOCALES",
+        merchantTourAddProduct: "Ajouter un produit",
+        merchantTourProductName: "Panier Atlas",
+        merchantTourProductPrice: "MAD 120",
+        merchantTourCheckout: "PAIEMENT CLIENT",
+        merchantTourVerified: "Acheteur vérifié",
+        merchantTourOrder: "Commande n° QF-2048",
+        merchantTourSignals: "Signaux de la boutique",
+        merchantTourSignalText: "Les paniers cadeaux progressent cette semaine."
     },
     ar: {
         languageTitle: "اختر لغتك",
@@ -864,8 +920,36 @@ const translations = {
         tourInvestorEyebrow: "منظور المستثمر",
         tourInvestorTitle: "طبقة تشغيل قابلة للتكرار للتجارة المحلية.",
         tourInvestorText: "تربط قُفَّة أدوات التاجر وثقة المشتري وذكاء الطلب في دورة منتج قابلة للتوسع، لتصنع مساراً واضحاً من تبنّي المجتمع إلى إيرادات متكررة.",
-        tourPlanContext: "الخطوة الأخيرة: اختر مستوى الدعم الذي يناسب عملك اليوم.",
-        tourPlansButton: "عرض الباقات"
+        tourPlanContext: "التالي: شاهد كيف ينشئ التاجر متجراً ويديره باستخدام قُفَّة.",
+        tourPlansButton: "شاهد دليل التاجر",
+        merchantTourEyebrow: "دليل التاجر",
+        merchantTourTitle: "شاهد متجر قُفَّة الخاص بك وهو ينبض بالحياة.",
+        merchantTourText: "جولة منتج إرشادية من أول تعديل لواجهة متجرك إلى طلب موثّق.",
+        merchantTourStepOneLabel: "1. اصنع هويتك",
+        merchantTourStepOneTitle: "اجعل واجهة المتجر تشبه مشروعك.",
+        merchantTourStepOneText: "اختر الألوان وارفع بانر الواجهة وأخبر العملاء بما يجعل متجرك مميزاً.",
+        merchantTourStepTwoLabel: "2. أنشئ الكتالوج",
+        merchantTourStepTwoTitle: "أضف منتجات يجدها الناس ويثقون بها.",
+        merchantTourStepTwoText: "حدّد السعر وارفع صور المنتجات وانشر مجموعة بلغات العملاء التي يستخدمونها.",
+        merchantTourStepThreeLabel: "3. اخدم المشترين",
+        merchantTourStepThreeTitle: "حوّل الزيارة إلى شراء بثقة.",
+        merchantTourStepThreeText: "يختار العملاء المنتجات ويتحققون من الهاتف ويكملون الطلب عبر تجربة جوال بسيطة.",
+        merchantTourStepFourLabel: "4. تعلّم ونَمِّ مشروعك",
+        merchantTourStepFourTitle: "استخدم مؤشرات واضحة لتقرر الخطوة التالية.",
+        merchantTourStepFourText: "تحول لوحة المعلومات النشاط الموثّق إلى خطوات تالية مفيدة، ويكون نادر جاهزاً للمساعدة.",
+        merchantTourReplay: "إعادة الدليل",
+        merchantTourContinue: "اختر باقتك",
+        merchantTourLive: "جولة منتج إرشادية",
+        merchantTourShopName: "نور وشركاه",
+        merchantTourBanner: "موسم جديد، قصص محلية",
+        merchantTourAddProduct: "أضف منتجاً",
+        merchantTourProductName: "سلة أطلس",
+        merchantTourProductPrice: "120 درهم",
+        merchantTourCheckout: "إتمام طلب المشتري",
+        merchantTourVerified: "مشتري موثّق",
+        merchantTourOrder: "الطلب رقم QF-2048",
+        merchantTourSignals: "مؤشرات المتجر",
+        merchantTourSignalText: "سلال الهدايا تشهد طلباً متزايداً هذا الأسبوع."
     }
 };
 
@@ -884,6 +968,7 @@ function showScreen(id) {
         id = "home-screen";
     }
     stopImpactTour();
+    stopMerchantWalkthrough();
 
     document.querySelectorAll(".screen").forEach(screen => {
         screen.classList.remove("active");
@@ -898,6 +983,10 @@ function showScreen(id) {
 
     if (id === "impact-tour-screen") {
         startImpactTour();
+    }
+
+    if (id === "merchant-walkthrough-screen") {
+        startMerchantWalkthrough();
     }
 }
 
@@ -1149,6 +1238,57 @@ function stopImpactTour() {
     }
 }
 
+/* =========================
+   MERCHANT WALKTHROUGH
+========================= */
+
+let merchantWalkthroughTimer = null;
+let merchantWalkthroughStep = 0;
+
+function setMerchantWalkthroughStep(step) {
+    const copyPanels = Array.from(document.querySelectorAll(".merchant-walkthrough-copy [data-merchant-tour-panel]"));
+    const demoPanels = Array.from(document.querySelectorAll(".merchant-walkthrough-device [data-merchant-tour-panel]"));
+    const tabs = Array.from(document.querySelectorAll("[data-merchant-tour-step]"));
+    const totalSteps = Math.min(copyPanels.length, demoPanels.length);
+    if (!totalSteps) return;
+
+    merchantWalkthroughStep = ((step % totalSteps) + totalSteps) % totalSteps;
+
+    [copyPanels, demoPanels].forEach(panels => {
+        panels.forEach((panel, index) => {
+            panel.classList.toggle("hidden", index !== merchantWalkthroughStep);
+        });
+    });
+
+    tabs.forEach((tab, index) => {
+        const isActive = index === merchantWalkthroughStep;
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", String(isActive));
+    });
+
+    document.querySelectorAll("[data-merchant-tour-dot]").forEach((dot, index) => {
+        dot.classList.toggle("active", index === merchantWalkthroughStep);
+    });
+}
+
+function startMerchantWalkthrough() {
+    stopMerchantWalkthrough();
+    setMerchantWalkthroughStep(0);
+    merchantWalkthroughTimer = window.setInterval(() => {
+        setMerchantWalkthroughStep(merchantWalkthroughStep + 1);
+    }, 4600);
+}
+
+function stopMerchantWalkthrough() {
+    if (merchantWalkthroughTimer) {
+        window.clearInterval(merchantWalkthroughTimer);
+        merchantWalkthroughTimer = null;
+    }
+}
+
+function replayMerchantWalkthrough() {
+    startMerchantWalkthrough();
+}
 /* =========================
    PACKAGES
 ========================= */

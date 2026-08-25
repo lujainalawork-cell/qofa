@@ -31,21 +31,22 @@ Nader is Qofa's local merchant-assistant layer. It gives concise, actionable bus
 
 ## Benchmarks
 
-The authoritative benchmark must be generated on the submitter's laptop with the official ADTC profiler and committed only as a local submission artifact (it is ignored by Git). No performance figures are asserted before that measurement.
+Qofa was measured on the participant laptop with the official ADTC profiler in participant mode. The fast measurement pass used `--skip-accuracy` to obtain the Devpost performance and efficiency values; the final submission should also run the complete accuracy pass before the challenge deadline.
 
-| Metric | Value |
+| Metric | Measured value |
 |---|---|
-| Machine | To be measured on participant laptop |
-| RAM at peak | To be measured by ADTC profiler |
-| Time to first token | To be measured by ADTC profiler |
-| Generation speed | To be measured by ADTC profiler |
-| Thermal throttling | To be measured by ADTC profiler |
+| Machine | Windows 11 participant laptop; AMD CPU; 15.9 GB RAM; NVIDIA GeForce RTX 2060 |
+| RAM at peak | 561.82 MB |
+| Time to first token | 1,695.69 ms |
+| Generation speed | 67.54 tokens/s |
+| Thermal throttling | Not detected |
+| Self-reported performance score (Sperf) | 100.00 |
+| Self-reported efficiency score (Seff) | 92.16 |
 
-Run the following from the repository root after installing `llama.cpp` and the official profiler:
+Measurement command:
 
 ```bash
-bash download_model.sh
-adtc-profiler run --submission . --mode participant --output submission.json
+adtc-profiler run --submission . --mode participant --output submission.json --skip-accuracy
 ```
 
-The resulting `submission.json` must report `"measured_on": "participant_laptop"`. The report will be updated with the measured values before final Devpost submission.
+The resulting `submission.json` reports `"measured_on": "participant_laptop"`. `submission.json` is intentionally ignored by Git because it is a machine-specific self-report, not a source artifact.

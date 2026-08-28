@@ -1,8 +1,28 @@
+<p align="center">
+  <img src="web/static/images/qofa-logo-en.png" alt="Qofa" width="220">
+</p>
+
 # Qofa
 
-> Community-commerce infrastructure for African merchants, buyers, and local economies.
+> **Launch a branded local shop. Build buyer trust. Get practical merchant guidance—even with unreliable connectivity.**
 
-**Qofa** is a multilingual, mobile-first commerce platform that helps local merchants launch branded shops, sell with greater buyer confidence, and understand the signals that can help them serve their communities better. It is designed as a clear, accessible experience for both people selling and people buying.
+<p align="center">
+  <a href="https://qofa-africa.loujaineal95.chatgpt.site"><strong>Explore the live demo</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://adtc-2026.devpost.com/"><strong>Africa Deep Tech Challenge 2026 submission</strong></a>
+</p>
+
+<p align="center">
+  <img src="docs/images/qofa-product-preview.png" alt="Illustrative Qofa product preview showing the merchant workspace and mobile storefront" width="100%">
+</p>
+
+> *Illustrative product preview: Qofa brings together a merchant workspace, branded storefront, buyer verification, multilingual commerce, and Nader’s local merchant guidance.*
+
+## Built for the Africa Deep Tech Challenge (ADTC) 2026
+
+Qofa is an **Africa Deep Tech Challenge 2026 Laptop LLM** submission. Its product experience pairs a multilingual, mobile-first commerce platform with **Nader**, a compact local assistant that runs through `llama.cpp` after its public GGUF model is downloaded—designed for merchant decision-making when dependable connectivity is not guaranteed.
+
+**Qofa** helps local merchants launch branded shops, sell with greater buyer confidence, and understand the signals that can help them serve their communities better. It is designed as a clear, accessible experience for both people selling and people buying.
 
 ## Live demo
 

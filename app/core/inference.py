@@ -10,6 +10,7 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
+from typing import Mapping
 
 from app.core.language import detect_language
 from app.core.prompts import SYSTEM_PROMPT
@@ -36,16 +37,17 @@ class QofaEngine:
         self.llama_cli = llama_cli or os.environ.get("QOFA_LLAMA_CLI")
         self.max_tokens = max_tokens
 
-    def chat(self, message, system_prompt=SYSTEM_PROMPT):
+    def chat(self, message, system_prompt=SYSTEM_PROMPT, merchant_context=None):
         language = detect_language(message)
         language_instruction = {
             "en": "Respond in English.",
             "fr": "Répondez en français.",
             "ar": "أجب باللغة العربية.",
         }
+        grounding = self._format_merchant_context(merchant_context)
         system_message = (
             f"{system_prompt}\n\nDetected user language: {language}\n"
-            f"{language_instruction[language]}"
+            f"{language_instruction[language]}{grounding}"
         )
 
         executable = self._resolve_llama_cli()
@@ -79,13 +81,50 @@ class QofaEngine:
                 "Run download_model.sh (or download_model.ps1 on Windows) first."
             )
 
-        for candidate in (self.llama_cli, "llama-cli", "llama-cli.exe", "main"):
+        repository_root = Path(__file__).resolve().parents[2]
+        bundled_candidates = (
+            repository_root / ".tools" / "llama-cpp" / "llama-cli.exe",
+            repository_root / ".tools" / "llama-cpp" / "llama-cli",
+        )
+
+        for candidate in (
+            self.llama_cli,
+            *bundled_candidates,
+            "llama-cli",
+            "llama-cli.exe",
+            "main",
+        ):
             if candidate and (Path(candidate).is_file() or shutil.which(candidate)):
                 return str(candidate)
 
         raise LocalModelUnavailable(
             "llama.cpp's llama-cli executable was not found. Install llama.cpp "
             "and add llama-cli to PATH, or set QOFA_LLAMA_CLI to its full path."
+        )
+
+    @staticmethod
+    def _format_merchant_context(merchant_context):
+        """Add verified local business facts without exposing any network path."""
+        if not merchant_context:
+            return ""
+
+        if not isinstance(merchant_context, Mapping):
+            raise TypeError("merchant_context must be a mapping of verified facts.")
+
+        facts = []
+        for field, value in merchant_context.items():
+            if value is None:
+                continue
+            label = str(field).replace("_", " ")
+            facts.append(f"- {label}: {value}")
+
+        if not facts:
+            return ""
+
+        return (
+            "\n\nVERIFIED LOCAL MERCHANT FACTS:\n"
+            + "\n".join(facts)
+            + "\nUse these facts when relevant. Do not invent or change them."
         )
 
     @staticmethod

@@ -10,9 +10,9 @@
     "github_handle": "lujainalawork-cell"
   },
   "cross_disciplinary_pairing": {
-    "discipline": "community commerce and small-business operations",
+    "discipline": "deterministic merchant analytics and local-language LLM guidance",
     "load_bearing": true,
-    "description": "Nader is an offline merchant-assistant layer for African small businesses: it turns operational questions into practical, low-cost actions when stable connectivity is unavailable."
+    "description": "Nader combines deterministic merchant analytics with a local GGUF language model: verified revenue, order, traffic, and inventory facts are passed into the offline prompt so each operational recommendation is grounded in local business evidence when connectivity is unavailable."
   },
   "test_prompts": [
     {

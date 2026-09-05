@@ -18,7 +18,7 @@ Nader is Qofa's local merchant-assistant layer. It gives concise, actionable bus
 - **Runtime:** `llama.cpp` is the only inference runtime. `app/core/inference.py` invokes a local `llama-cli` executable through a subprocess; it contains no HTTP client or cloud-model dependency.
 - **Quantization:** `Q4_K_M` GGUF is used to keep memory use practical on the 8 GB challenge profile while retaining more useful output quality than aggressive low-bit quantizations.
 - **Packaging:** the repository stores no model weights. `download_model.sh` downloads the public, credential-free GGUF to the path declared in `metadata.json` before evaluation.
-- **Product grounding:** the deterministic Qofa business-data layer remains available for numeric calculations and missing-data checks. The local model supplies conversational merchant guidance; it does not invent merchant metrics.
+- **Product grounding:** the deterministic Qofa business-data layer calculates the available merchant facts and passes that local evidence into Nader's prompt. The local model supplies the conversational explanation, but it is instructed not to invent or alter merchant metrics. If the local runtime is unavailable, the product returns the deterministic evidence-led response rather than pretending that a model answered.
 - **Alternatives considered:** larger 1B–7B models can improve response quality but add memory pressure and reduce CPU throughput on an integrated-graphics laptop. Network-hosted models were rejected because the submission must work offline.
 
 ## Constraints

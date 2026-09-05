@@ -7,6 +7,7 @@ sys.path.insert(0, str(ROOT))
 
 from app.data.merchant import MerchantData
 from app.core.agent import QofaAgent
+from app.core.inference import LocalModelUnavailable, QofaEngine
 
 app = Flask(
     __name__,
@@ -26,6 +27,7 @@ merchant = MerchantData(
 )
 
 nader = QofaAgent(merchant)
+offline_nader = QofaEngine()
 
 
 @app.route("/")
@@ -54,8 +56,31 @@ def nader_chat():
         }), 400
 
     result = nader.handle_question(question)
+    merchant_context = merchant.summary()
 
-    return jsonify(result)
+    # The deterministic layer supplies verified numbers; the local model turns
+    # them into a concise, conversational explanation. If the GGUF runtime is
+    # not installed, the existing evidence-led answer remains available.
+    if result.get("analysis"):
+        merchant_context["deterministic_analysis"] = result["analysis"]
+    elif result.get("metrics"):
+        merchant_context["deterministic_analysis"] = result["metrics"]
+
+    try:
+        response = offline_nader.chat(
+            question,
+            merchant_context=merchant_context,
+        )
+    except (LocalModelUnavailable, RuntimeError):
+        result["mode"] = "deterministic_fallback"
+        return jsonify(result)
+
+    return jsonify({
+        "status": "offline_analysis",
+        "message": response,
+        "mode": "offline_llama_cpp",
+        "evidence": merchant_context,
+    })
 
 
 @app.route("/api/nader/information", methods=["POST"])
